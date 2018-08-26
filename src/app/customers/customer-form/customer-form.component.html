@@ -1,0 +1,31 @@
+<h1>Edit customer</h1>
+
+<form novalidate [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-row">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Name" formControlName="name" />
+      <mat-error *ngIf="form.get('name').hasError('required')">
+        REQUIRED
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Firstname" formControlName="firstname" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field>
+      <input type="number" matInput placeholder="Number of orders" formControlName="numberOfOrders" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <button mat-raised-button color="primary" type="submit" [disabled]="this.form.invalid">Save</button>
+    <button mat-raised-button type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>
+
+<pre>form.getRawValue() = <br/>{{ form.getRawValue() | json }}</pre>

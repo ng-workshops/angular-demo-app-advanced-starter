@@ -1,0 +1,13 @@
+<div>
+  <mat-form-field>
+    <input matInput [formControl]="searchTerm" placeholder="Search..." />
+  </mat-form-field>
+</div>
+
+<div class="items" *ngFor="let product of products">
+  <span class="id">{{product.id}}</span>
+  <a class="link" [routerLink]="product.id">{{product.name}}</a>
+  <span class="price">{{product.price}}</span>
+</div>
+
+<router-outlet></router-outlet>

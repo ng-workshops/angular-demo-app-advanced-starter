@@ -1,0 +1,15 @@
+<div class="customers-search">
+  <mat-form-field>
+    <input matInput [formControl]="searchTerm" placeholder="Search..." />
+  </mat-form-field>
+
+  <button mat-icon-button (click)="addNewCustomer()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="customer">
+  <app-customer *ngFor="let customer of customers$ | async" [customer]="customer" (deleteCustomer)="deleteCustomer($event)">
+    <app-customer-details></app-customer-details>
+  </app-customer>
+</div>

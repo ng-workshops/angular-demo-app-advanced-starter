@@ -1,0 +1,113 @@
+{
+  "name": "angular-demo-app-advanced-starter",
+  "version": "1.0.0",
+  "description": "Angular Demo Application to show some cool stuff :-)",
+  "license": "MIT",
+  "jest": {
+    "preset": "jest-preset-angular",
+    "globals": {
+      "__TRANSFORM_HTML__": true,
+      "ts-jest": {
+        "tsConfigFile": "config/tsconfig.jest.json",
+        "enableTsDiagnostics": true
+      }
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/config/setupJest.ts",
+    "transformIgnorePatterns": [
+      "node_modules/(?!lodash-es/*|@angular/common/locales/*)"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "moduleNameMapper": {
+      "^my-ui-lib/(.*)": "<rootDir>/node_modules/my-ui-lib/$1"
+    },
+    "coverageDirectory": "tmp/coverage",
+    "coverageReporters": [
+      "json",
+      "html",
+      "cobertura",
+      "text-summary"
+    ]
+  },
+  "jest-junit": {
+    "suiteName": "angular-demo-app",
+    "output": "./tmp/junit.xml"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "start:all": "ng serve --proxy-config config/proxy.conf.json & npm run start:server",
+    "start:server": "node server",
+    "start:dist": "ng build --prod & DIST=true node server",
+    "build": "ng build --prod",
+    "build:report": "ng build --stats-json && webpack-bundle-analyzer dist/stats.json",
+    "jest": "jest --silent",
+    "tdd": "jest --bail --expand --verbose",
+    "tdd:cover": "jest --coverage --no-cache",
+    "test": "ng test",
+    "test:cover": "jest --silent --coverage --no-cache && opn tmp/coverage/index.html",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "6.1.4",
+    "@angular/cdk": "6.4.6",
+    "@angular/common": "6.1.4",
+    "@angular/compiler": "6.1.4",
+    "@angular/core": "6.1.4",
+    "@angular/forms": "6.1.4",
+    "@angular/http": "6.1.4",
+    "@angular/material": "6.4.6",
+    "@angular/platform-browser": "6.1.4",
+    "@angular/platform-browser-dynamic": "6.1.4",
+    "@angular/router": "6.1.4",
+    "@ngrx/effects": "6.1.0",
+    "@ngrx/entity": "6.1.0",
+    "@ngrx/router-store": "6.1.0",
+    "@ngrx/store": "6.1.0",
+    "@ngrx/store-devtools": "6.1.0",
+    "core-js": "^2.5.7",
+    "ngrx-store-freeze": "0.2.4",
+    "ngrx-store-localstorage": "5.0.1",
+    "rxjs": "^6.2.2",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.7.5",
+    "@angular/cli": "6.1.5",
+    "@angular/compiler-cli": "6.1.4",
+    "@angular/language-service": "6.1.4",
+    "@angularclass/hmr": "2.1.3",
+    "@ngrx/schematics": "6.1.0",
+    "@types/core-js": "2.5.0",
+    "@types/jasmine": "~2.8.8",
+    "@types/jasminewd2": "~2.0.3",
+    "@types/jest": "23.3.1",
+    "@types/node": "~10.9.1",
+    "body-parser": "1.18.3",
+    "codelyzer": "^4.4.4",
+    "compression": "1.7.3",
+    "express": "4.16.3",
+    "jasmine-core": "~3.2.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "jest": "23.5.0",
+    "jest-junit": "5.1.0",
+    "jest-preset-angular": "6.0.0",
+    "jest-util": "23.4.0",
+    "karma": "~3.0.0",
+    "karma-chrome-launcher": "~2.2.0",
+    "karma-coverage-istanbul-reporter": "^2.0.1",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "^1.3.0",
+    "material-design-icons": "3.0.1",
+    "protractor": "~5.4.0",
+    "rxjs-compat": "6.2.2",
+    "ts-node": "~7.0.1",
+    "tslint": "~5.11.0",
+    "typescript": "2.7.2",
+    "webpack-bundle-analyzer": "2.13.1"
+  }
+}

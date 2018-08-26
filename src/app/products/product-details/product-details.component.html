@@ -1,0 +1,19 @@
+<div *ngIf="product" class="product">
+<!-- <div *ngIf="product$ | async as product" class="product"> -->
+  <h3>"{{ product.name }}"</h3>
+  <div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="product.name" placeholder="Name" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="product.price" type="number" placeholder="Price" />
+    </mat-form-field>
+  </div>
+  <p>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button mat-raised-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button appCanClick (canClick)="cancel()">Delete</button>
+  </p>
+</div>

@@ -1,0 +1,12 @@
+/* Navigation link styles */
+
+:host(.dark){
+  nav a {
+    background-color: grey;
+    color: white !important;
+  }
+
+  nav a:visited, a:link {
+    color: blue;
+  }
+}

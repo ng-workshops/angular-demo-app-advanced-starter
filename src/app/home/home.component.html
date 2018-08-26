@@ -1,0 +1,21 @@
+<h1>Hello Angular</h1>
+
+<p>My current User is "{{user.name | uppercase}}"</p>
+
+<span>These are my hobbies: </span>
+<span *ngFor="let h of user?.hobbies">{{h}} </span>
+
+<p>He is god in Math => 1 + 2 = {{ 1 + 2 }}</p>
+
+<button (click)="user.showSecret = !user.showSecret">
+    {{ user.showSecret ? 'Hide' : 'Show'}} the secret message
+</button>
+<span [hidden]="!user.showSecret">My phone number is 123 456 7890</span>
+
+<br />
+
+<input #phone placeholder="phone number" />
+<button [class.app-disabled]="!user.showSecret" [disabled]="!user.showSecret" (click)="callMe(phone.value)">Call me</button>
+
+<h5>DEBUG</h5>
+<pre>user = <br/>{{ user | json }}</pre>

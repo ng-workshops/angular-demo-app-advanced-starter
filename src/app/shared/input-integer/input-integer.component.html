@@ -1,0 +1,9 @@
+<mat-form-field>
+  <input #field="ngModel" type="text" matInput appIntegerValidator [(ngModel)]="input" (ngModelChange)="parseToInt($event)"
+    placeholder="{{placeholder}}" [name]="name" />
+  <span matPrefix>$&nbsp;</span>
+
+  <mat-error *ngIf="field.invalid">
+    Please enter a valid integer
+  </mat-error>
+</mat-form-field>

@@ -1,0 +1,54 @@
+<h1>User Settings</h1>
+
+<form novalidate [formGroup]="form" (ngSubmit)="save()">
+  <div class="form-row">
+    <mat-radio-group formControlName="theme">
+      <mat-radio-button value="light">Light</mat-radio-button>
+      <mat-radio-button value="dark">Dark</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="form-row">
+    <mat-checkbox formControlName="isAdmin">I am Admin!</mat-checkbox>
+  </div>
+
+  <div class="form-row">
+    <app-input-integer formControlName="salary" placeholder="Salary" name="salary"></app-input-integer>
+  </div>
+
+  <div class="form-row" formGroupName="password">
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password with min 6 chars" formControlName="value" />
+      <mat-error *ngIf="form.get('password.value').hasError('not_equal')">
+        Passwords must be
+        <strong>equal</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password again" formControlName="repeat" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-row" formArrayName="rights">
+    <label>Access Rights</label>
+    <span>({{ form.get('rights').value | appJoin:'+' }})</span>
+    <br />
+    <button type="button" (click)="addRight()">
+      <i class="material-icons md-12">add</i>
+    </button>
+    <div *ngFor="let rightsControl of form.get('rights')['controls']; let i = index;">
+      <mat-form-field>
+        <input matInput [formControlName]="i" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button type="button" (click)="reset()">Cancel</button>
+  </div>
+
+  <pre>form.getRawValue() = <br/>{{ form.getRawValue() | json }}</pre>
+  <pre>form.valid() = <br/>{{ form.valid | json }}</pre>
+</form>

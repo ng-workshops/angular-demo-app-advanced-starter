@@ -1,0 +1,27 @@
+<div class="header">
+  <a routerLink="{{customer?.id}}">
+    <h4>
+      {{customer?.name}}{{customer?.firstname ? ', ' + customer?.firstname : ''}}
+    </h4>
+  </a>
+  <!-- <span><mat-icon>{{customer?.numberOfOrders | customerStatus}}</mat-icon></span> -->
+</div>
+<div class="content">
+  <span>
+    My hobbies: "{{ customer?.hobbies }}"
+  </span>
+  <button mat-icon-button (click)="showMore()">
+    <mat-icon>{{ showDetails ? 'keyboard_arrow_down' : 'keyboard_arrow_right' }}</mat-icon>
+  </button>
+</div>
+<div class="details" *ngIf="showDetails">
+  <ng-content></ng-content>
+</div>
+<div class="footer">
+  <button mat-icon-button (click)="edit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button (click)="delete(customer?.id)">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>

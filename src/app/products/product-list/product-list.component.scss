@@ -1,0 +1,42 @@
+:host {
+  > div {
+    margin: 10px;
+  }
+}
+
+
+.items {
+  display: flex;
+  width: 300px;
+  background-color: bisque;
+  border: 1px solid  bisque;
+  border-radius: 2px;
+
+  &.selected {
+    background-color: cadetblue;
+  }
+
+  span {
+    padding: 10px;
+
+    &.id {
+      background-color: chocolate;
+    }
+
+    &.price {
+      align-self: flex-end;
+    }
+  }
+
+  a {
+    padding: 10px;
+    text-decoration: none;
+
+    flex-grow: 3;
+
+    &:hover {
+      background-color: aquamarine;
+      cursor: pointer;
+    }
+  }
+}

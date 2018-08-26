@@ -1,0 +1,13 @@
+<nav>
+  <a routerLink="home" routerLinkActive="active">Home</a>
+  <a routerLink="customers" routerLinkActive="active">Customers</a>
+  <a routerLink="products" routerLinkActive="active">Products</a>
+  <a routerLink="settings" routerLinkActive="active">Settings</a>
+  <a routerLink="doesNotExists" routerLinkActive="active" class="app-disabled">I am disabled</a>
+</nav>
+
+<div class="{{currentTheme}}" [@fadeInAnimation]="getRouteAnimation(route)">
+  <router-outlet #route></router-outlet>
+</div>
+
+<div class="theme">Theme: {{ currentTheme }}</div>
