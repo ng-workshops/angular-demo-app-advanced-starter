@@ -82,6 +82,57 @@ providers: [
 
 ```ts
 addNewCustomer() {
-    this.store.dispatch(new Go({ path: ['customers', 'new'] }));
+  this.store.dispatch(new Go({ path: ['customers', 'new'] }));
   }
+```
+
+<!-- Possible optimization to use the router store -->
+
+## customers/store/selectors/customer.selectors.ts
+
+```ts
+export const getSelectedCustomerFromRouter = createSelector(
+  getCustomers,
+  getRouterState,
+  (customers, router) =>
+    customers.find(c => c.id === router.state.params.id) || {}
+);
+```
+
+## customers/customer-form/customer-form.component.ts
+
+```ts
+@Component({
+  selector: 'app-customer-form',
+  templateUrl: './customer-form.component.html',
+  styleUrls: ['./customer-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class CustomerFormComponent implements OnInit, OnDestroy {
+  ngOnInit() {
+    this.form = Customer.toFormGroup();
+
+    this.store
+      // .select(getSelectedCustomer)
+      .select(getSelectedCustomerFromRouter)
+      .pipe(
+        filter(customer => !!customer),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(customer => {
+        this.form.patchValue(customer);
+      });
+
+    // const id = this.route.snapshot.params.id;
+
+    // if (id !== 'new') {
+    //   this.store.dispatch(new SelectCustomer(parseInt(id, 10)));
+    // }
+  }
+
+  cancel() {
+    // this.router.navigate(['customers']);
+    this.store.dispatch(new Go({ path: ['customers'] }));
+  }
+}
 ```
