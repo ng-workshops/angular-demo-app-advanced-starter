@@ -19,7 +19,7 @@
     "tdd": "jest --bail --expand --verbose",
     "tdd:cover": "jest --coverage --no-cache",
     "test": "ng test",
-    "test:cover": "jest --silent --coverage --no-cache && opn tmp/coverage/index.html",
+    "test:cover": "jest --silent --coverage --no-cache && opn coverage/index.html",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:watch": "jest --watch"
