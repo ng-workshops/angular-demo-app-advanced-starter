@@ -1,10 +1,14 @@
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import { LOCALE_ID, NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ProductListComponent } from './product-list.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MatTableModule } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../products.service';
 import { Subject } from 'rxjs';
+import { ProductsService } from '../products.service';
+import { ProductListComponent } from './product-list.component';
+
+registerLocaleData(localeDe, 'de');
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
@@ -17,14 +21,15 @@ describe('ProductListComponent', () => {
     };
 
     TestBed.configureTestingModule({
+      imports: [MatTableModule],
       declarations: [ProductListComponent],
       providers: [
         { provide: ActivatedRoute, useValue: activeRouteStub },
-        { provide: ProductsService, useValue: {} }
+        { provide: ProductsService, useValue: {} },
+        { provide: LOCALE_ID, useValue: 'de' }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

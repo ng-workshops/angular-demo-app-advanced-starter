@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const responses = require('./responses');
 
 module.exports = {
-  initRoutes: (apiRouter) => {
+  initRoutes: apiRouter => {
     apiRouter.get('/products', (req, res) => {
       res.json(responses.getAll(req.query.search));
     });
@@ -19,4 +19,4 @@ module.exports = {
       res.json(responses.update(req.body));
     });
   }
-}
+};

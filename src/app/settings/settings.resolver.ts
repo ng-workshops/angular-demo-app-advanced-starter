@@ -5,12 +5,10 @@ import { Observable } from 'rxjs';
 import { SettingsService } from './settings.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SettingsResolver implements Resolve<Settings> {
-  constructor(
-    private settingsService: SettingsService
-  ) { }
+  constructor(private settingsService: SettingsService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Settings> {
     return this.settingsService.get();

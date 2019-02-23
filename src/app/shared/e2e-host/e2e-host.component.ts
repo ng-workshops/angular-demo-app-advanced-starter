@@ -9,7 +9,9 @@ export abstract class E2EHostComponent {
     this.attr_e2e += '_' + this._name;
   }
 
-  get name(): string { return this._name; }
+  get name(): string {
+    return this._name;
+  }
 
   private _name: string;
 }

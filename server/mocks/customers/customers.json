@@ -4,11 +4,7 @@
     "name": "Simpson",
     "firstname": "Homer",
     "numberOfOrders": 0,
-    "hobbies": [
-      "Eat",
-      "Sleep",
-      "Beer"
-    ]
+    "hobbies": ["Eat", "Sleep", "Beer"]
   },
   {
     "id": 2,
@@ -21,9 +17,6 @@
     "name": "Simpson",
     "firstname": "Bart",
     "numberOfOrders": 51,
-    "hobbies": [
-      "Candy",
-      "Skateboard"
-    ]
+    "hobbies": ["Candy", "Skateboard"]
   }
 ]

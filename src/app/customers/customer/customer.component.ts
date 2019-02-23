@@ -16,10 +16,9 @@ export class CustomerComponent implements OnInit {
 
   showDetails = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   delete(id: number) {
     this.deleteCustomer.emit(id);

@@ -1,17 +1,14 @@
 import { Directive, HostListener, ElementRef, OnInit, HostBinding, Renderer2, Output, EventEmitter } from '@angular/core';
 
 @Directive({
-  selector: '[appCanClick]',
+  selector: '[appCanClick]'
 })
 export class CanClickDirective implements OnInit {
   @HostBinding('class.app-disabled') isDisabled = true;
 
   @Output() canClick = new EventEmitter();
 
-  constructor(
-    private element: ElementRef,
-    private renderer: Renderer2
-  ) { }
+  constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   @HostListener('click', ['$event']) onClick(e: MouseEvent) {
     if (this.isDisabled) {

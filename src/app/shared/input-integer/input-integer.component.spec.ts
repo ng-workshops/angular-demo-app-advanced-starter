@@ -12,9 +12,8 @@ describe('InputIntegerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, MatInputModule, NoopAnimationsModule],
-      declarations: [ InputIntegerComponent ]
-    })
-    .compileComponents();
+      declarations: [InputIntegerComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

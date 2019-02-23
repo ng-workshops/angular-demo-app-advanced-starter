@@ -11,8 +11,7 @@ describe('ProductsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ProductsComponent],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

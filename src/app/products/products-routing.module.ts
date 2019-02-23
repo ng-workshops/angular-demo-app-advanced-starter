@@ -9,7 +9,8 @@ import { CanDeactivateGuard } from '../core/can-deactivate/can-deactivate-guard.
 
 const routes = [
   {
-    path: 'products', component: ProductsComponent,
+    path: 'products',
+    component: ProductsComponent,
     children: [
       {
         path: '',
@@ -37,4 +38,4 @@ const routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProductsRoutingModule { }
+export class ProductsRoutingModule {}

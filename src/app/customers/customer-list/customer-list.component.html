@@ -9,7 +9,7 @@
 </div>
 
 <div class="customer">
-  <app-customer *ngFor="let customer of customers$ | async" [customer]="customer" (deleteCustomer)="deleteCustomer($event)">
+  <app-customer *ngFor="let customer of (customers$ | async)" [customer]="customer" (deleteCustomer)="deleteCustomer($event)">
     <app-customer-details></app-customer-details>
   </app-customer>
 </div>

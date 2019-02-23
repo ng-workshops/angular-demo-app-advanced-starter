@@ -28,8 +28,7 @@ describe('CustomerFormComponent', () => {
         { provide: MatSnackBar, useValue: {} }
       ],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

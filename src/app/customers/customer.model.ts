@@ -15,7 +15,7 @@ export class Customer {
       id: formBuilder.control(customer.id),
       name: formBuilder.control(customer.name, Validators.required),
       firstname: formBuilder.control(customer.firstname),
-      numberOfOrders: formBuilder.control(customer.numberOfOrders, Validators.min(0)),
+      numberOfOrders: formBuilder.control(customer.numberOfOrders, Validators.min(0))
     });
   }
 }

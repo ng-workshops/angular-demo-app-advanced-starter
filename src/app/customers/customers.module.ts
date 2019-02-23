@@ -8,16 +8,7 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CustomersRoutingModule,
-    SharedModule
-  ],
-  declarations: [
-    CustomerComponent,
-    CustomerDetailsComponent,
-    CustomerListComponent,
-    CustomerFormComponent
-  ]
+  imports: [CommonModule, CustomersRoutingModule, SharedModule],
+  declarations: [CustomerComponent, CustomerDetailsComponent, CustomerListComponent, CustomerFormComponent]
 })
-export class CustomersModule { }
+export class CustomersModule {}

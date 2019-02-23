@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TimezoneInterceptor implements HttpInterceptor {
-
-  constructor() { }
+  constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Clone the request and replace the original headers with
@@ -19,4 +18,3 @@ export class TimezoneInterceptor implements HttpInterceptor {
     return next.handle(timezoneReq);
   }
 }
-

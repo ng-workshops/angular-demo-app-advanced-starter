@@ -4,39 +4,26 @@
   }
 }
 
+table {
+  margin: 10px;
+  width: 50%;
 
-.items {
-  display: flex;
-  width: 300px;
-  background-color: bisque;
-  border: 1px solid  bisque;
-  border-radius: 2px;
-
-  &.selected {
-    background-color: cadetblue;
-  }
-
-  span {
-    padding: 10px;
-
-    &.id {
-      background-color: chocolate;
+  td,
+  th {
+    &.currency {
+      text-align: right;
     }
 
-    &.price {
-      align-self: flex-end;
+    > a {
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
     }
   }
 
-  a {
-    padding: 10px;
-    text-decoration: none;
-
-    flex-grow: 3;
-
+  tr {
     &:hover {
-      background-color: aquamarine;
-      cursor: pointer;
+      background-color: azure;
     }
   }
 }

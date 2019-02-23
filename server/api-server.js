@@ -12,7 +12,7 @@ const apiRouter = new express.Router();
 const latency = process.env.latency || 0;
 // const simulateErrors = !!(process.env.simulateErrors || false);
 
-module.exports = (PORT) => {
+module.exports = PORT => {
   const app = express();
 
   // docker switch

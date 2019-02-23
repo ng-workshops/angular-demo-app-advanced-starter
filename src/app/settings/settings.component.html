@@ -32,12 +32,12 @@
 
   <div class="form-row" formArrayName="rights">
     <label>Access Rights</label>
-    <span>({{ form.get('rights').value | appJoin:'+' }})</span>
+    <span>({{ form.get('rights').value | appJoin: '+' }})</span>
     <br />
     <button type="button" (click)="addRight()">
       <i class="material-icons md-12">add</i>
     </button>
-    <div *ngFor="let rightsControl of form.get('rights')['controls']; let i = index;">
+    <div *ngFor="let rightsControl of form.get('rights')['controls']; let i = index">
       <mat-form-field>
         <input matInput [formControlName]="i" />
       </mat-form-field>

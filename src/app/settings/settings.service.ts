@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SettingsService {
   /* tslint:disable */
@@ -22,12 +22,10 @@ export class SettingsService {
   }
 
   set(settings: Settings) {
-    return this.httpClient
-      .post<Settings>(this.ENDPOINT, settings)
-      .pipe(
-        tap(_ => this.themeListener.next(settings.theme)),
-        catchError(this.handleError)
-      );
+    return this.httpClient.post<Settings>(this.ENDPOINT, settings).pipe(
+      tap(_ => this.themeListener.next(settings.theme)),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -37,9 +35,7 @@ export class SettingsService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
-      );
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
     }
     // return an Error with a user-facing error message
     return throwError('Something bad happened; please try again later.');

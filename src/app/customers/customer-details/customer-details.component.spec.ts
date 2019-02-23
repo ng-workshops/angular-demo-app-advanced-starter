@@ -11,8 +11,7 @@ describe('CustomerDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CustomerDetailsComponent],
       schemas: [NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

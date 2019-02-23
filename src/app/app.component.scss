@@ -1,12 +1,13 @@
 /* Navigation link styles */
 
-:host(.dark){
+:host(.dark) {
   nav a {
     background-color: grey;
     color: white !important;
   }
 
-  nav a:visited, a:link {
+  nav a:visited,
+  a:link {
     color: blue;
   }
 }

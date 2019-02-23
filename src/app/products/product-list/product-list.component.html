@@ -4,10 +4,37 @@
   </mat-form-field>
 </div>
 
-<div class="items" *ngFor="let product of products">
-  <span class="id">{{product.id}}</span>
-  <a class="link" [routerLink]="product.id">{{product.name}}</a>
-  <span class="price">{{product.price}}</span>
-</div>
+<table mat-table [dataSource]="products" class="mat-elevation-z8">
+  <!-- Id Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">
+      <a class="link" [routerLink]="element.id">{{ element.name }}</a>
+    </td>
+    <td mat-footer-cell *matFooterCellDef>Total</td>
+  </ng-container>
+
+  <!-- Price Column -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef class="currency">Price</th>
+    <td mat-cell *matCellDef="let element" class="currency">
+      {{ element.price | currency: 'EUR':'symbol':'1.2-2':'de' }}
+    </td>
+    <td mat-footer-cell *matFooterCellDef class="currency">
+      {{ getTotal() | currency: 'EUR':'symbol':'1.2-2':'de' }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="row.id"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>
 
 <router-outlet></router-outlet>

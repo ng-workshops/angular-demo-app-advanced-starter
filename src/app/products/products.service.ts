@@ -5,18 +5,16 @@ import { Product } from './product.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProductsService {
   private readonly endpoint = environment.endpoints.products;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getAll(searchTerm = '') {
     // add search param
-    const httpOptions = searchTerm
-      ? { params: new HttpParams().set('search', searchTerm) }
-      : {};
+    const httpOptions = searchTerm ? { params: new HttpParams().set('search', searchTerm) } : {};
 
     return this.httpClient.get<Array<Product>>(this.endpoint, httpOptions);
   }

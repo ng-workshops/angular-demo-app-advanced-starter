@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor {
-
-  constructor() { }
+  constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // Normally e get the auth token from a service.

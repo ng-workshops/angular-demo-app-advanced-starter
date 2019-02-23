@@ -1,19 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 // Angular Material Theme
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 /*
  * @see https://material.io/icons/
  */
 
- @font-face {
+@font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src:
-    local('Material Icons'),
-    local('MaterialIcons-Regular'),
+  src: local('Material Icons'), local('MaterialIcons-Regular'),
     url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
     url(../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff');
 }
@@ -37,21 +35,31 @@
   /* Support for IE. */
   font-feature-settings: 'liga';
 
-  &.md-12 { font-size: 12px; }
-  &.md-18 { font-size: 18px; }
-  &.md-24 { font-size: 24px; }
-  &.md-36 { font-size: 36px; }
-  &.md-48 { font-size: 48px; }
+  &.md-12 {
+    font-size: 12px;
+  }
+  &.md-18 {
+    font-size: 18px;
+  }
+  &.md-24 {
+    font-size: 24px;
+  }
+  &.md-36 {
+    font-size: 36px;
+  }
+  &.md-48 {
+    font-size: 48px;
+  }
 }
 
 // Global app styles
 .app-disabled {
   cursor: not-allowed !important;
   color: gray !important;
-  transition: opacity ease-in-out .3s;
+  transition: opacity ease-in-out 0.3s;
 
   &:hover {
-    opacity: .3;
+    opacity: 0.3;
   }
 
   > * {
@@ -67,7 +75,7 @@
 .theme {
   position: absolute;
   top: 0;
-  right:0;
+  right: 0;
   margin-top: 10px;
   margin-right: 10px;
   width: 100px;
@@ -82,12 +90,13 @@ nav a {
   background-color: #eee;
   border-radius: 4px;
 }
-nav a:visited, a:link {
-  color: #607D8B;
+nav a:visited,
+a:link {
+  color: #607d8b;
 }
 nav a:hover {
   color: #039be5;
-  background-color: #CFD8DC;
+  background-color: #cfd8dc;
 }
 nav a.active {
   color: #039be5;
@@ -108,18 +117,18 @@ pre {
 // customers
 .customers {
   background: white;
-  border: 1px solid #e0e0e0;;
+  border: 1px solid #e0e0e0;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   cursor: default;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: .3s all;
+  transition: 0.3s all;
   width: 300px;
 
   &:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   }
 }
 

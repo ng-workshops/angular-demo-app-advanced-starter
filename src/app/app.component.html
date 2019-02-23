@@ -6,7 +6,7 @@
   <a routerLink="doesNotExists" routerLinkActive="active" class="app-disabled">I am disabled</a>
 </nav>
 
-<div class="{{currentTheme}}" [@fadeInAnimation]="getRouteAnimation(route)">
+<div class="{{ currentTheme }}" [@fadeInAnimation]="getRouteAnimation(route)">
   <router-outlet #route></router-outlet>
 </div>
 

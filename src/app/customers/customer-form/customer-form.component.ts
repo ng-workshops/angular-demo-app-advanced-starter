@@ -37,9 +37,7 @@ export class CustomerFormComponent implements OnInit {
 
   submit() {
     const data = this.form.getRawValue();
-    const save$ = data.id
-      ? this.customerService.update.bind(this.customerService)
-      : this.customerService.create.bind(this.customerService);
+    const save$ = data.id ? this.customerService.update.bind(this.customerService) : this.customerService.create.bind(this.customerService);
 
     save$(data).subscribe(_ => {
       this.snackBar.open(`Customer ${data.name} saved successfully.`, '', {

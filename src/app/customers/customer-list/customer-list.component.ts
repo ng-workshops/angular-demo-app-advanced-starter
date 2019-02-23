@@ -18,10 +18,7 @@ export class CustomerListComponent implements OnInit {
   private search$: Observable<string>;
   private reload$ = new Subject();
 
-  constructor(
-    private router: Router,
-    private customerService: CustomerService
-  ) { }
+  constructor(private router: Router, private customerService: CustomerService) {}
 
   ngOnInit() {
     this.search$ = this.searchTerm.valueChanges.pipe(
@@ -30,13 +27,12 @@ export class CustomerListComponent implements OnInit {
       startWith('')
     );
 
-    this.customers$ = merge(this.search$, this.reload$)
-      .pipe(
-        withLatestFrom(this.search$),
-        map(value => value[1]),
-        switchMap(value => {
-          return this.customerService.getAll(value);
-        })
+    this.customers$ = merge(this.search$, this.reload$).pipe(
+      withLatestFrom(this.search$),
+      map(value => value[1]),
+      switchMap(value => {
+        return this.customerService.getAll(value);
+      })
     );
   }
 

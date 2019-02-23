@@ -15,9 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private settingsService: SettingsService) {}
 
   ngOnInit() {
-    this.settingsService.themeChanged$.subscribe(
-      theme => (this.currentTheme = theme)
-    );
+    this.settingsService.themeChanged$.subscribe(theme => (this.currentTheme = theme));
   }
 
   // change the animation state

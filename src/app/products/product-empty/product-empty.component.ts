@@ -8,10 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styles: ['p { color: grey; margin: 10px; }']
 })
 export class ProductEmptyComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

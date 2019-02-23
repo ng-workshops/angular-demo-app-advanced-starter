@@ -1,28 +1,23 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatCheckboxModule,
+  MatIconModule,
+  MatInputModule,
   MatRadioModule,
   MatSnackBarModule,
-  MatInputModule,
-  MatIconModule
+  MatTableModule
 } from '@angular/material';
-
 import { CanClickDirective } from './directives/can-click.directive';
-import { JoinPipe } from './pipes/join.pipe';
 import { InputIntegerComponent } from './input-integer/input-integer.component';
 import { IntegerValidatorDirective } from './input-integer/integer.validator.directive';
+import { JoinPipe } from './pipes/join.pipe';
 
 @NgModule({
   imports: [CommonModule, MatInputModule, FormsModule],
-  declarations: [
-    CanClickDirective,
-    InputIntegerComponent,
-    IntegerValidatorDirective,
-    JoinPipe
-  ],
+  declarations: [CanClickDirective, InputIntegerComponent, IntegerValidatorDirective, JoinPipe],
   exports: [
     CommonModule,
     FormsModule,
@@ -36,6 +31,7 @@ import { IntegerValidatorDirective } from './input-integer/integer.validator.dir
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,
+    MatTableModule,
     CanClickDirective
   ],
   providers: []

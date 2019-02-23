@@ -9,17 +9,13 @@ import { FormArray, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-settings',
   styleUrls: ['./settings.component.scss'],
-  templateUrl: './settings.component.html',
+  templateUrl: './settings.component.html'
 })
 export class SettingsComponent implements OnInit {
   private initialData: Settings;
   form: FormGroup;
 
-  constructor(
-    private route: ActivatedRoute,
-    private settingsService: SettingsService,
-    private snackBar: MatSnackBar
-  ) { }
+  constructor(private route: ActivatedRoute, private settingsService: SettingsService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.initialData = JSON.parse(JSON.stringify(this.route.snapshot.data.settings));
@@ -27,8 +23,11 @@ export class SettingsComponent implements OnInit {
   }
 
   save() {
-    this.settingsService.set(this.form.getRawValue())
-      .subscribe(_ => this.snackBar.open('Settings save successfully.', '', { duration: 1000 }));
+    this.settingsService.set(this.form.getRawValue()).subscribe(_ =>
+      this.snackBar.open('Settings save successfully.', '', {
+        duration: 1000
+      })
+    );
   }
 
   addRight() {
