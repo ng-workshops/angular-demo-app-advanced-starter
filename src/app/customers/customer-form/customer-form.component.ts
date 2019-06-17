@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../customer.model';
 import { switchMap, filter, map } from 'rxjs/operators';
 import { CustomerService } from '../customer.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-customer-form',
