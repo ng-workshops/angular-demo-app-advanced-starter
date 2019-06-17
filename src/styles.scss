@@ -71,6 +71,11 @@
 
 .form-row {
   padding: 10px;
+
+  button {
+    min-width: 75px;
+    margin-right: 10px;
+  }
 }
 
 // app
@@ -81,6 +86,10 @@
   margin-top: 10px;
   margin-right: 10px;
   width: 100px;
+}
+
+nav {
+  padding: 10px;
 }
 
 nav a {
@@ -109,6 +118,18 @@ mat-form-field {
   margin-right: 50px;
 }
 
+mat-card {
+  max-width: 400px;
+}
+
+mat-card-actions {
+  text-align: right;
+}
+
+mat-card-content {
+  padding: 0 20px;
+}
+
 pre {
   background-color: lightgray;
   color: blueviolet;
@@ -117,7 +138,7 @@ pre {
 }
 
 // customers
-.customers {
+app-customer {
   background: white;
   border: 1px solid #e0e0e0;
   border-radius: 20px;
@@ -131,25 +152,6 @@ pre {
 
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  }
-}
-
-.customers-search {
-  margin-left: 40px;
-}
-
-.customer {
-  display: flex;
-  flex-direction: row;
-  // flex-grow: 1;
-  flex-wrap: wrap;
-  overflow: auto;
-  padding: 25px;
-
-  > app-customer {
-    margin: 15px;
-    display: flex;
-    flex-direction: column;
   }
 
   .header {
@@ -190,6 +192,32 @@ pre {
         font-size: 20px;
       }
     }
+  }
+}
+
+.customers-search {
+  margin-left: 40px;
+}
+
+.customer {
+  display: flex;
+  flex-direction: row;
+  // flex-grow: 1;
+  flex-wrap: wrap;
+  overflow: auto;
+  padding: 25px;
+
+  > app-customer {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+app-info-item {
+  > p {
+    border: 1px dotted royalblue;
+    padding: 20px;
   }
 }
 
