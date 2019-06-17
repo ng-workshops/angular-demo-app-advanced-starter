@@ -1,22 +1,26 @@
 # 1 Component interaction - Parent to Child
 
-\$ ng generate component home/info-box --module home
+> ng generate component home/info-box
 
-## home/info-box/info-box.component.html
+## src/app/home/info-box/info-box.component.html
 
 ```html
-<div style="border: 1px dotted royalblue">
-  <p>@Input() Message: {{message}}</p>
-</div>
+<mat-card>
+  <mat-card-content>
+    <div>
+      <p>@Input() Message: {{ message }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
 ```
 
-## home/info-box/info-box.component.ts
+## src/app/home/info-box/info-box.component.ts
 
 ```ts
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'info-box',
+  selector: 'app-info-box',
   templateUrl: './info-box.component.html',
   styleUrls: ['./info-box.component.scss']
 })
@@ -30,17 +34,17 @@ export class InfoBoxComponent implements OnInit {
 }
 ```
 
-## home/home.component.html
+## src/app/home/home.component.html
 
 ```html
 <p>
   <button (click)="changeChild()">Change Child data</button>
 </p>
 
-<info-box [message]="message"></info-box>
+<app-info-box [message]="message"></app-info-box>
 ```
 
-## home/home.component.ts
+## src/app/home/home.component.ts
 
 ```ts
 export class HomeComponent {
@@ -50,4 +54,10 @@ export class HomeComponent {
     this.message = new Date().toISOString();
   }
 }
+```
+
+## src/app/home/home.module.ts
+
+```ts
+imports: [CommonModule, FormsModule, MatCardModule];
 ```

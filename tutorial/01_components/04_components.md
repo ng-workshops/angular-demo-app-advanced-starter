@@ -1,20 +1,24 @@
 # 4 Component interaction - Child events
 
-## home/info-box/info-box.component.html
+## src/app/home/info-box/info-box.component.html
 
 ```html
-<div style="border: 1px dotted royalblue">
-  <p>@Input() Message: {{message}}</p>
-  <p>@Input() Name: {{name}}</p>
+<mat-card>
+  <mat-card-content>
+    <div>
+      <p>@Input() Message: {{ message }}</p>
+      <p>@Input() Name: {{ name }}</p>
 
-  <p>
-    <input type="text" #text />
-    <button (click)="reply(text.value)">Message to parent</button>
-  </p>
-</div>
+      <p>
+        <input type="text" #text />
+        <button (click)="reply(text.value)">Message to parent</button>
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>
 ```
 
-## home/info-box/info-box.component.ts
+## src/app/home/info-box/info-box.component.ts
 
 ```ts
 import {
@@ -28,7 +32,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'info-box',
+  selector: 'app-info-box',
   templateUrl: './info-box.component.html',
   styleUrls: ['./info-box.component.scss']
 })
@@ -74,23 +78,23 @@ export class InfoBoxComponent implements OnInit, OnChanges {
 }
 ```
 
-## home/home.component.html
+## src/app/home/home.component.html
 
 ```html
 <p>
   <button (click)="changeChild()">Change Child data</button>
 </p>
 
-<info-box
+<app-info-box
   [message]="message"
   [name]="name"
   (replyToParent)="processReply($event)"
-></info-box>
+></app-info-box>
 
 <pre>Message from Child = {{ reply | json }}</pre>
 ```
 
-## home/home.component.ts
+## src/app/home/home.component.ts
 
 ```ts
 import { Component } from '@angular/core';

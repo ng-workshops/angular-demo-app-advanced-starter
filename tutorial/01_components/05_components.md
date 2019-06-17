@@ -1,6 +1,6 @@
 # 5 Component interaction - Local template variable
 
-## home/home.component.html
+## src/app/home/home.component.html
 
 ```html
 <p>
@@ -10,12 +10,12 @@
   </button>
 </p>
 
-<info-box
+<app-info-box
   #child
   [message]="message"
   [name]="name"
   (replyToParent)="processReply($event)"
-></info-box>
+></app-info-box>
 
 <pre>Message from Child = {{ reply | json }}</pre>
 ```

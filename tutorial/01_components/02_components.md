@@ -1,21 +1,25 @@
 # 2 Component interaction - Getter and setter
 
-## home/info-box/info-box.component.html
+## src/app/home/info-box/info-box.component.html
 
 ```html
-<div style="border: 1px dotted royalblue">
-  <p>@Input() Message: {{message}}</p>
-  <p>@Input() Name: {{name}}</p>
-</div>
+<mat-card>
+  <mat-card-content>
+    <div>
+      <p>@Input() Message: {{ message }}</p>
+      <p>@Input() Name: {{ name }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
 ```
 
-## home/info-box/info-box.component.ts
+## src/app/home/info-box/info-box.component.ts
 
 ```ts
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'info-box',
+  selector: 'app-info-box',
   templateUrl: './info-box.component.html',
   styleUrls: ['./info-box.component.scss']
 })
@@ -40,17 +44,17 @@ export class InfoBoxComponent implements OnInit {
 }
 ```
 
-## home/home.component.html
+## src/app/home/home.component.html
 
 ```html
 <p>
   <button (click)="changeChild()">Change Child data</button>
 </p>
 
-<info-box [message]="message" [name]="name"></info-box>
+<app-info-box [message]="message" [name]="name"></app-info-box>
 ```
 
-## home/home.component.ts
+## src/app/home/home.component.ts
 
 ```ts
 import { Component } from '@angular/core';

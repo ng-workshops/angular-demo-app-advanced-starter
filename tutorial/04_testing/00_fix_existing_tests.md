@@ -38,7 +38,7 @@ beforeEach(() => {
 });
 ```
 
-## home/home.component.spec.ts
+## src/app/home/home.component.spec.ts
 
 ```ts
 beforeEach(async(() => {
@@ -50,7 +50,7 @@ beforeEach(async(() => {
 }));
 ```
 
-## home/info-item/info-item.component.spec.ts
+## src/app/home/info-item/info-item.component.spec.ts
 
 ```ts
 beforeEach(async(() => {

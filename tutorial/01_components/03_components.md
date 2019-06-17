@@ -1,6 +1,6 @@
 # 3 Component interaction - ngOnChanges
 
-## home/info-box/info-box.component.ts
+## src/app/home/info-box/info-box.component.ts
 
 ```ts
 import {
@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'info-box',
+  selector: 'app-info-box',
   templateUrl: './info-box.component.html',
   styleUrls: ['./info-box.component.scss']
 })

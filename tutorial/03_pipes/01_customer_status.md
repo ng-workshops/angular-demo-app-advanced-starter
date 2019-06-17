@@ -1,6 +1,6 @@
 # 1 pipes - customer status pipe
 
-\$ ng generate pipe customers/customer-status --module customers
+> ng generate pipe customers/customer-status --module customers
 
 ## customers/customer-status.pipe.ts
 

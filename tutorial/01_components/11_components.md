@@ -1,8 +1,8 @@
-# 11 Component - Dynamic Global Modal
+# 15 Dynamic Global Modal
 
-\$ ng generate service shared/modal/host/host-element --module shared
+> ng generate service shared/modal/host/host-element --module shared
 
-## shared/modal/host/host-element.service.ts
+## src/app/shared/modal/host/host-element.service.ts
 
 ```ts
 import { Injectable, ViewContainerRef } from '@angular/core';
@@ -21,7 +21,7 @@ export class HostElementService {
 }
 ```
 
-## app.component.ts
+## src/app/app.component.ts
 
 ```ts
 import {
@@ -30,12 +30,15 @@ import {
   OnInit,
   ViewContainerRef
 } from '@angular/core';
-import { SettingsService } from './settings/settings.service';
 import { HostElementService } from './shared/modal/host/host-element.service';
 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
 export class AppComponent implements OnInit {
   constructor(
-    private settingsService: SettingsService,
     hostElementService: HostElementService,
     hostElement: ViewContainerRef
   ) {
@@ -44,7 +47,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-## shared/modal/modal.service.ts
+## src/app/shared/modal/modal.service.ts
 
 ```ts
 import {
@@ -94,18 +97,18 @@ export class ModalService {
 }
 ```
 
-## shared/module.ts
+## src/app/shared/module.ts
 
 Add HostElementService to providers
 providers: [HostElementService],
 
-## home/home.component.html
+## src/app/home/home.component.html
 
 ```html
 <button (click)="openModalGlobal()">Open modal globally</button>
 ```
 
-## home/home.component.ts
+## src/app/home/home.component.ts
 
 ```ts
 openModalGlobal() {

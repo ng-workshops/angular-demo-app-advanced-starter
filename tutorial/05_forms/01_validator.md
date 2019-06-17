@@ -1,6 +1,6 @@
 # 1 forms - custom validator
 
-\$ touch shared/input-float/input-float.validator.ts
+> create shared/input-float/input-float.validator.ts
 
 ## shared/input-float/input-float.validator.ts
 

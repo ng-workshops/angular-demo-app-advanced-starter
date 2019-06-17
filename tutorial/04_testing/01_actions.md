@@ -1,6 +1,6 @@
 # 1 testing - actions
 
-\$ touch customers/store/actions/customer.actions.spec.ts
+> touch customers/store/actions/customer.actions.spec.ts
 
 ## customers/store/actions/customer.actions.spec.ts
 
