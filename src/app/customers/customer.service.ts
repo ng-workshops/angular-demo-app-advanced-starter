@@ -13,7 +13,9 @@ export class CustomerService {
 
   getAll(searchTerm = '') {
     // add search param
-    const httpOptions = searchTerm ? { params: new HttpParams().set('search', searchTerm) } : {};
+    const httpOptions = searchTerm
+      ? { params: new HttpParams().set('search', searchTerm) }
+      : {};
 
     return this.httpClient.get<Array<Customer>>(this.endpoint, httpOptions);
   }

@@ -8,7 +8,7 @@
   <p>@Input() Name: {{name}}</p>
 
   <p>
-    <input type="text" #text/>
+    <input type="text" #text />
     <button (click)="reply(text.value)">Message to parent</button>
   </p>
 </div>
@@ -81,7 +81,11 @@ export class InfoBoxComponent implements OnInit, OnChanges {
   <button (click)="changeChild()">Change Child data</button>
 </p>
 
-<info-box [message]="message" [name]="name" (replyToParent)="processReply($event)"></info-box>
+<info-box
+  [message]="message"
+  [name]="name"
+  (replyToParent)="processReply($event)"
+></info-box>
 
 <pre>Message from Child = {{ reply | json }}</pre>
 ```

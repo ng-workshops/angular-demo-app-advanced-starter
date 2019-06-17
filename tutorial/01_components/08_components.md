@@ -1,8 +1,9 @@
 # 8 Component - 2 way binding
 
-$ ng generate component home/info-item --module home
+\$ ng generate component home/info-item --module home
 
 ## home/info-item/info-item.component.html
+
 ```html
 <p>
   <input type="text" [(ngModel)]="message" />
@@ -103,12 +104,8 @@ import { InfoBoxComponent } from './info-box/info-box.component';
 import { InfoItemComponent } from './info-item/info-item.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    HomeRoutingModule
-  ],
-  declarations: [HomeComponent, InfoBoxComponent, InfoItemComponent],
+  imports: [CommonModule, FormsModule, HomeRoutingModule],
+  declarations: [HomeComponent, InfoBoxComponent, InfoItemComponent]
 })
-export class HomeModule { }
+export class HomeModule {}
 ```

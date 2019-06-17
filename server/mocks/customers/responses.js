@@ -11,7 +11,10 @@ module.exports = {
           p =>
             p.name.toLowerCase().includes(search.toLowerCase()) ||
             (p.firstname || '').toLowerCase().includes(search.toLowerCase()) ||
-            (p.hobbies && p.hobbies.some(h => h.toLowerCase().includes(search.toLowerCase())))
+            (p.hobbies &&
+              p.hobbies.some(h =>
+                h.toLowerCase().includes(search.toLowerCase())
+              ))
         ) || []
       );
     }

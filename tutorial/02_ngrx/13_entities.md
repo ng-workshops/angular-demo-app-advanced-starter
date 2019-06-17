@@ -26,7 +26,8 @@ case CustomerActionTypes.LoadCustomersSuccess: {
 ## customers/store/selectors/customer.selector.ts
 
 ```ts
-export const getCustomers = createSelector(getCustomersStore, store =>
-  Object.keys(store.customers).map(key => store.customers[key])
+export const getCustomers = createSelector(
+  getCustomersStore,
+  store => Object.keys(store.customers).map(key => store.customers[key])
 );
 ```

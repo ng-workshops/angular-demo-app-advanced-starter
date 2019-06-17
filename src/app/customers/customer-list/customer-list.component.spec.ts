@@ -18,7 +18,10 @@ describe('CustomerListComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [CustomerListComponent],
-      providers: [{ provide: Router, useValue: {} }, { provide: CustomerService, useValue: spy }],
+      providers: [
+        { provide: Router, useValue: {} },
+        { provide: CustomerService, useValue: spy }
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 

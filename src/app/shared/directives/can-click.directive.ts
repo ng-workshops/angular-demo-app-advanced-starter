@@ -1,4 +1,13 @@
-import { Directive, HostListener, ElementRef, OnInit, HostBinding, Renderer2, Output, EventEmitter } from '@angular/core';
+import {
+  Directive,
+  HostListener,
+  ElementRef,
+  OnInit,
+  HostBinding,
+  Renderer2,
+  Output,
+  EventEmitter
+} from '@angular/core';
 
 @Directive({
   selector: '[appCanClick]'
@@ -21,7 +30,11 @@ export class CanClickDirective implements OnInit {
   }
 
   ngOnInit() {
-    this.renderer.setProperty(this.element.nativeElement, 'title', 'Im Demo-Modus nicht verfügbar');
+    this.renderer.setProperty(
+      this.element.nativeElement,
+      'title',
+      'Im Demo-Modus nicht verfügbar'
+    );
     this.isDisabled = true;
   }
 }

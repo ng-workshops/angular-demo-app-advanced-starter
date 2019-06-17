@@ -17,7 +17,12 @@ import { JoinPipe } from './pipes/join.pipe';
 
 @NgModule({
   imports: [CommonModule, MatInputModule, FormsModule],
-  declarations: [CanClickDirective, InputIntegerComponent, IntegerValidatorDirective, JoinPipe],
+  declarations: [
+    CanClickDirective,
+    InputIntegerComponent,
+    IntegerValidatorDirective,
+    JoinPipe
+  ],
   exports: [
     CommonModule,
     FormsModule,

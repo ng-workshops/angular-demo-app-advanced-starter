@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { merge, Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith, switchMap, withLatestFrom } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  startWith,
+  switchMap,
+  withLatestFrom
+} from 'rxjs/operators';
 import { Customer } from '../customer.model';
 import { CustomerService } from '../customer.service';
 
@@ -18,7 +25,10 @@ export class CustomerListComponent implements OnInit {
   private search$: Observable<string>;
   private reload$ = new Subject();
 
-  constructor(private router: Router, private customerService: CustomerService) {}
+  constructor(
+    private router: Router,
+    private customerService: CustomerService
+  ) {}
 
   ngOnInit() {
     this.search$ = this.searchTerm.valueChanges.pipe(

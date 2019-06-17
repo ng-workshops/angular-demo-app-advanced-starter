@@ -1,10 +1,11 @@
 # 10 Component - Dynamic Modal
 
-$ ng generate component shared/modal --module shared
+\$ ng generate component shared/modal --module shared
 
-$ create shared/modal/modal.model.ts
+\$ create shared/modal/modal.model.ts
 
 ## shared/modal/modal.model.ts
+
 ```ts
 type ModalTypes = 'basic' | 'warn' | 'primary';
 
@@ -16,9 +17,9 @@ export interface ModalData {
 ```
 
 ## shared/modal/modal.component.html
+
 ```html
-<div class="closable backdrop" (click)="close.emit()">
-</div>
+<div class="closable backdrop" (click)="close.emit()"></div>
 
 <div class="closable modal-dialog">
   <mat-card>
@@ -63,9 +64,10 @@ export class ModalComponent implements OnInit {
 }
 ```
 
-$ ng generate service shared/modal/modal
+\$ ng generate service shared/modal/modal
 
 ## shared/modal/modal.service.ts
+
 ```ts
 import {
   ComponentFactoryResolver,
@@ -108,11 +110,13 @@ Add MatCardModule, MatButtonModule, ModalComponent
 Add ModalComponent in entry components
 
 ## home/home.component.html
+
 ```html
 <button (click)="openModal()">Open modal</button>
 ```
 
 ## home/home.component.ts
+
 ```ts
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { InfoBoxComponent } from './info-box/info-box.component';
@@ -171,4 +175,3 @@ export class HomeComponent {
   }
 }
 ```
-

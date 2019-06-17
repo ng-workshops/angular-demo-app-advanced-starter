@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  HostBinding,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Customer } from '../customer.model';
 import { Router } from '@angular/router';
 

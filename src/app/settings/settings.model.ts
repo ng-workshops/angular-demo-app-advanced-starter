@@ -36,8 +36,14 @@ export class Settings {
         isAdmin: formBuilder.control(settings.isAdmin),
         salary: formBuilder.control(settings.salary, integerValidator()),
         password: formBuilder.group({
-          value: formBuilder.control(settings.password.value, Validators.minLength(6)),
-          repeat: formBuilder.control(settings.password.repeat, Validators.minLength(6))
+          value: formBuilder.control(
+            settings.password.value,
+            Validators.minLength(6)
+          ),
+          repeat: formBuilder.control(
+            settings.password.repeat,
+            Validators.minLength(6)
+          )
         }),
         rights: formBuilder.array(settings.rights || [])
       },

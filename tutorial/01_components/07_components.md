@@ -1,8 +1,9 @@
 # 7 Component interaction - Message service
 
-$ ng generate service home/message
+\$ ng generate service home/message
 
 ## home/message.service.ts
+
 ```ts
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -23,6 +24,7 @@ export class MessageService {
   }
 }
 ```
+
 ## home/info-box/info-box.component.ts
 
 ```ts
@@ -99,12 +101,19 @@ export class InfoBoxComponent implements OnInit, OnChanges, OnDestroy {
 ```html
 <p>
   <button (click)="changeChild()">Change Child data</button>
-  <button (click)="child.name = 'Changed BY PARENT'">Change Child via Template Var</button>
+  <button (click)="child.name = 'Changed BY PARENT'">
+    Change Child via Template Var
+  </button>
   <button (click)="processReplyFromCode()">Change Child via ViewChild</button>
   <button (click)="sendMessage()">Send message via service</button>
 </p>
 
-<info-box #child [message]="message" [name]="name" (replyToParent)="processReply($event)"></info-box>
+<info-box
+  #child
+  [message]="message"
+  [name]="name"
+  (replyToParent)="processReply($event)"
+></info-box>
 
 <pre>Message from Child = {{ reply | json }}</pre>
 ```

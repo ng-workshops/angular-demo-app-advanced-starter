@@ -142,8 +142,15 @@ export class InputFloatComponent implements OnInit, ControlValueAccessor {
 
 ```html
 <mat-form-field>
-  <input #field="ngModel" type="text" matInput inputFloat [(ngModel)]="input" (ngModelChange)="parseToFloat($event)"
-    placeholder="{{placeholder}}" />
+  <input
+    #field="ngModel"
+    type="text"
+    matInput
+    inputFloat
+    [(ngModel)]="input"
+    (ngModelChange)="parseToFloat($event)"
+    placeholder="{{placeholder}}"
+  />
   <span matPrefix>$&nbsp;</span>
 
   <mat-error *ngIf="field.invalid">
@@ -162,7 +169,11 @@ exports: [InputFloatDirective, InputFloatComponent];
 
 ```html
 <mat-form-field>
-  <input-float formControlName="salary" placeholder="Salary" name="salary"></input-float>
+  <input-float
+    formControlName="salary"
+    placeholder="Salary"
+    name="salary"
+  ></input-float>
 </mat-form-field>
 ```
 

@@ -38,7 +38,6 @@ export class InfoBoxComponent implements OnInit {
 
   ngOnInit() {}
 }
-
 ```
 
 ## home/home.component.html

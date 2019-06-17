@@ -7,7 +7,11 @@ import * as RouterActions from './router.actions';
 
 @Injectable()
 export class RouterEffects {
-  constructor(private actions$: Actions, private router: Router, private location: Location) {}
+  constructor(
+    private actions$: Actions,
+    private router: Router,
+    private location: Location
+  ) {}
 
   @Effect({ dispatch: false })
   navigate$ = this.actions$.pipe(

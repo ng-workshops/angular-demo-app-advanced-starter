@@ -14,7 +14,11 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   // product$: Observable<Product>;
 
-  constructor(private route: ActivatedRoute, private router: Router, private productsService: ProductsService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private productsService: ProductsService
+  ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => (this.product = data.product));

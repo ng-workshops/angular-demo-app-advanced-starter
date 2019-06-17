@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup } from '@angular/forms/src/model';
 import { Settings } from './settings.model';
 import { SettingsService } from './settings.service';
-import { MatSnackBar } from '@angular/material';
-import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -15,10 +14,16 @@ export class SettingsComponent implements OnInit {
   private initialData: Settings;
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private settingsService: SettingsService, private snackBar: MatSnackBar) {}
+  constructor(
+    private route: ActivatedRoute,
+    private settingsService: SettingsService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
-    this.initialData = JSON.parse(JSON.stringify(this.route.snapshot.data.settings));
+    this.initialData = JSON.parse(
+      JSON.stringify(this.route.snapshot.data.settings)
+    );
     this.form = Settings.toFormGroup(this.route.snapshot.data.settings);
   }
 

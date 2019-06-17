@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { debounceTime, distinctUntilChanged, startWith, switchMap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  startWith,
+  switchMap
+} from 'rxjs/operators';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
 
@@ -16,7 +21,10 @@ export class ProductListComponent implements OnInit {
   searchTerm = new FormControl();
   displayedColumns = ['id', 'name', 'price'];
 
-  constructor(private route: ActivatedRoute, private productService: ProductsService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductsService
+  ) {}
 
   ngOnInit() {
     this.route.paramMap
@@ -40,7 +48,9 @@ export class ProductListComponent implements OnInit {
   }
 
   getTotal() {
-    return this.products.map(p => p.price).reduce((acc, value) => acc + value, 0);
+    return this.products
+      .map(p => p.price)
+      .reduce((acc, value) => acc + value, 0);
   }
 
   private loadProducts(searchTerm?: string) {

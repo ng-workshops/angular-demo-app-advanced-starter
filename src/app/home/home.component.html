@@ -7,13 +7,19 @@
 
 <p>He is god in Math => 1 + 2 = {{ 1 + 2 }}</p>
 
-<button (click)="user.showSecret = !user.showSecret">{{ user.showSecret ? 'Hide' : 'Show' }} the secret message</button>
+<button (click)="user.showSecret = !user.showSecret">
+  {{ user.showSecret ? 'Hide' : 'Show' }} the secret message
+</button>
 <span [hidden]="!user.showSecret">My phone number is 123 456 7890</span>
 
 <br />
 
 <input #phone placeholder="phone number" />
-<button [class.app-disabled]="!user.showSecret" [disabled]="!user.showSecret" (click)="callMe(phone.value)">
+<button
+  [class.app-disabled]="!user.showSecret"
+  [disabled]="!user.showSecret"
+  (click)="callMe(phone.value)"
+>
   Call me
 </button>
 

@@ -54,5 +54,7 @@ export function cutToDecimal(num: number, decimal: number) {
   decimal = Math.floor(decimal);
 
   const multiplier = Math.pow(10, decimal);
-  return (Math.floor(parseFloat(num.toString()) * multiplier) / multiplier).toFixed(decimal);
+  return (
+    Math.floor(parseFloat(num.toString()) * multiplier) / multiplier
+  ).toFixed(decimal);
 }

@@ -1,6 +1,6 @@
 # 1 forms - custom validator
 
-$ touch shared/input-float/input-float.validator.ts
+\$ touch shared/input-float/input-float.validator.ts
 
 ## shared/input-float/input-float.validator.ts
 
@@ -35,11 +35,11 @@ salary: formBuilder.control(settings.salary, floatValidator()),
 
 ```html
 <div class="form-row">
-    <mat-form-field>
-      <input type="text" matInput placeholder="Salary" formControlName="salary" />
-      <mat-error *ngIf="form.get('salary').hasError('float')">
-        Please enter a valid number
-      </mat-error>
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Salary" formControlName="salary" />
+    <mat-error *ngIf="form.get('salary').hasError('float')">
+      Please enter a valid number
+    </mat-error>
+  </mat-form-field>
+</div>
 ```

@@ -2,7 +2,7 @@
 
 https://github.com/ngrx/platform/blob/master/docs/schematics/store.md
 
-$ ng generate store State --root --statePath store --stateInterface AppState --module app.module.ts
+\$ ng generate store State --root --statePath store --stateInterface AppState --module app.module.ts
 
 ## store/index.ts
 
@@ -26,7 +26,7 @@ export const metaReducers: MetaReducer<AppState>[] = !environment.production
   : [];
 ```
 
-$ ng generate feature customers/store/Customer --module customers/customers.module.ts --group
+\$ ng generate feature customers/store/Customer --module customers/customers.module.ts --group
 
 ## customers/store/reducers/customer.reducer.ts
 
@@ -67,7 +67,7 @@ export function reducer(
 }
 ```
 
-$ touch customers/store/selectors/customer.selectors.ts
+\$ touch customers/store/selectors/customer.selectors.ts
 
 ## customers/store/selectors/customer.selectors.ts
 

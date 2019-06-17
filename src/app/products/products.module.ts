@@ -9,6 +9,11 @@ import { ProductEmptyComponent } from './product-empty/product-empty.component';
 
 @NgModule({
   imports: [ProductsRoutingModule, SharedModule],
-  declarations: [ProductsComponent, ProductListComponent, ProductDetailsComponent, ProductEmptyComponent]
+  declarations: [
+    ProductsComponent,
+    ProductListComponent,
+    ProductDetailsComponent,
+    ProductEmptyComponent
+  ]
 })
 export class ProductsModule {}

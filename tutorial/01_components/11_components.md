@@ -1,6 +1,6 @@
 # 11 Component - Dynamic Global Modal
 
-$ ng generate service shared/modal/host/host-element --module shared
+\$ ng generate service shared/modal/host/host-element --module shared
 
 ## shared/modal/host/host-element.service.ts
 

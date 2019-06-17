@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
 import { tap, finalize } from 'rxjs/operators';
 
 @Injectable({
@@ -25,10 +30,20 @@ export class LoggingInterceptor implements HttpInterceptor {
         const elapsed = Date.now() - started;
         const msg = `${req.method} ${ok} in ${elapsed} ms: "${req.urlWithParams}"`;
 
-        console.log('%cINFO%c XHR', 'color:white; background-color: #8E388E; padding: 0 .5em;', '', msg);
+        console.log(
+          '%cINFO%c XHR',
+          'color:white; background-color: #8E388E; padding: 0 .5em;',
+          '',
+          msg
+        );
 
         if (req.method === 'PUT' || req.method === 'POST') {
-          console.log('%cINFO%c BODY', 'color:white; background-color: #8E388E; padding: 0 .5em;', '', req.body);
+          console.log(
+            '%cINFO%c BODY',
+            'color:white; background-color: #8E388E; padding: 0 .5em;',
+            '',
+            req.body
+          );
         }
       })
     );

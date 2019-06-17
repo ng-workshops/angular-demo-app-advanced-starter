@@ -9,6 +9,11 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [CommonModule, CustomersRoutingModule, SharedModule],
-  declarations: [CustomerComponent, CustomerDetailsComponent, CustomerListComponent, CustomerFormComponent]
+  declarations: [
+    CustomerComponent,
+    CustomerDetailsComponent,
+    CustomerListComponent,
+    CustomerFormComponent
+  ]
 })
 export class CustomersModule {}

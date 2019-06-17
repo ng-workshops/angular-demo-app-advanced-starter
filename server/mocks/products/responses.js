@@ -6,7 +6,11 @@ module.exports = {
    */
   getAll: search => {
     if (search) {
-      return products.filter(p => p.name.toLowerCase().includes(search.toLowerCase())) || [];
+      return (
+        products.filter(p =>
+          p.name.toLowerCase().includes(search.toLowerCase())
+        ) || []
+      );
     }
 
     return products;

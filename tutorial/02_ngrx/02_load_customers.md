@@ -109,5 +109,9 @@ export class CustomerListComponent implements OnInit {
 ## customers/customer-list/customer-list.component.html
 
 ```html
-<mat-progress-bar *ngIf="loading$ | async" color="primary" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar
+  *ngIf="loading$ | async"
+  color="primary"
+  mode="indeterminate"
+></mat-progress-bar>
 ```

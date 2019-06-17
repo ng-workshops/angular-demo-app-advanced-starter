@@ -1,6 +1,6 @@
 # 1 Component interaction - Parent to Child
 
-$ ng generate component home/info-box --module home
+\$ ng generate component home/info-box --module home
 
 ## home/info-box/info-box.component.html
 
