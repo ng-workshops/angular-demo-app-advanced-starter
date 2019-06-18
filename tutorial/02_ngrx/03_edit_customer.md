@@ -4,7 +4,7 @@
 
 ```ts
 export const selectCustomer = createAction(
-  '[Customer] Select customer',
+  '[UI] Select customer',
   props<{ id: number }>()
 );
 ```
@@ -25,6 +25,7 @@ export const getSelectedCustomerId = createSelector(
   getCustomersStore,
   store => store.selectedCustomerId
 );
+
 export const getSelectedCustomer = createSelector(
   getCustomers,
   getSelectedCustomerId,

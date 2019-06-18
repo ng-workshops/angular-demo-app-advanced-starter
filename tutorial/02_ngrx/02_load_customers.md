@@ -14,7 +14,7 @@ export const loadCustomersSuccess = createAction(
 );
 
 export const loadCustomersFail = createAction(
-  '[Customer] Load Customers Fail',
+  '[API] Load Customers Fail',
   props<{ err: any }>()
 );
 ```
@@ -104,4 +104,18 @@ export class CustomerListComponent implements OnInit {
 ></mat-progress-bar>
 
 ...
+```
+
+## src/app/shared/shared.moddule.ts
+
+```ts
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+....
+
+exports: [
+...
+MatProgressBarModule,
+]
+
 ```

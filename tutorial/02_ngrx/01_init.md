@@ -85,6 +85,7 @@ export const getLoading = createSelector(
   getCustomersStore,
   store => store.loading
 );
+
 export const getCustomers = createSelector(
   getCustomersStore,
   store => store.customers
@@ -94,7 +95,7 @@ export const getCustomers = createSelector(
 ## src/app/app.module.ts
 
 ```ts
-EffectsModule.forRoot([]);
+EffectsModule.forRoot([]),
 ```
 
 ## src/app/customers/store/effects/customer.effects.ts
@@ -134,6 +135,6 @@ constructor(
   ) { }
 
 ngOnInit() {
-    this.store.dispatch(new LoadCustomers());
+    this.store.dispatch(loadCustomers());
   }
 ```

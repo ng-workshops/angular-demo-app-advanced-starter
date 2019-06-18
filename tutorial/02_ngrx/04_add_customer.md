@@ -3,89 +3,62 @@
 ## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
-import { Action } from '@ngrx/store';
-import { Customer } from '../../customer.model';
+export const addCustomer = createAction(
+  '[UI] Add new customer',
+  props<{ customer: Customer }>()
+);
 
-export enum CustomerActionTypes {
-  LoadCustomers = '[Customer] Load Customers',
-  LoadCustomersSuccess = '[Customer] Load customers success',
-  LoadCustomersFail = '[Customer] Load customers fail',
-  SelectCustomer = '[Customer] Select customer',
-  AddCustomer = '[Customer] Add customer',
-  AddCustomerSuccess = '[Customer] Add customer success',
-  AddCustomerFail = '[Customer] Add customer fail'
-}
+export const addCustomerSuccess = createAction(
+  '[API] Add new customer success',
+  props<{ customer: Customer }>()
+);
 
-export class AddCustomer implements Action {
-  readonly type = CustomerActionTypes.AddCustomer;
-  constructor(public payload: Customer) {}
-}
-
-export class AddCustomerSuccess implements Action {
-  readonly type = CustomerActionTypes.AddCustomerSuccess;
-  constructor(public payload: Customer) {}
-}
-
-export class AddCustomerFail implements Action {
-  readonly type = CustomerActionTypes.AddCustomerFail;
-  constructor(public payload: any) {}
-}
-
-export type CustomerActions =
-  | LoadCustomers
-  | LoadCustomersSuccess
-  | LoadCustomersFail
-  | SelectCustomer
-  | AddCustomer
-  | AddCustomerSuccess
-  | AddCustomerFail;
+export const addCustomerFail = createAction(
+  '[API] Add new customer fail',
+  props<{ err: any }>()
+);
 ```
 
 ## src/app/customers/store/reducers/customer.reducer.ts
 
 ```ts
-case CustomerActionTypes.AddCustomerSuccess: {
-      const newCustomer = action.payload;
-      const customers = [...state.customers, newCustomer];
-
-      return {
-        ...state,
-        customers
-      };
-    }
+on(CustomerActions.addCustomerSuccess, (state, { customer }) => ({
+  ...state,
+  customers: [...state.customers, customer]
+}));
 ```
 
 ## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
-/*
-   * add a new customer
-   */
-  @Effect()
-  addCustomers$ = this.actions$.pipe(
-    ofType(fromActions.CustomerActionTypes.AddCustomer),
-    map((action: fromActions.AddCustomer) => action.payload),
-    concatMap(customer =>
-      this.customerService.create(customer).pipe(
-        map(newCustomer => new fromActions.AddCustomerSuccess(newCustomer)),
-        catchError(err => of(new fromActions.AddCustomerFail(err)))
-      )
+  addCustomers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CustomerActions.addCustomer),
+      concatMap(({ customer }) => {
+        return this.customerService.create(customer).pipe(
+          map(customers => CustomerActions.addCustomerSuccess({ customer })),
+          catchError(err => of(CustomerActions.addCustomerFail(err)))
+        );
+      })
     )
   );
 
-  /*
-   * save customer success
-   */
-  @Effect({ dispatch: false })
-  saveCustomersSuccess$ = this.actions$.pipe(
-    ofType(fromActions.CustomerActionTypes.AddCustomerSuccess),
-    map((action: fromActions.AddCustomerSuccess) => action.payload),
-    tap(customer => {
-      this.snackBar.open(`Customer ${customer.name} saved successfully.`, '', {
-        duration: 2000
-      });
-    }),
-    map(_ => this.router.navigateByUrl('/customers'))
+  saveCustomersSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(CustomerActions.addCustomerSuccess),
+        tap(({ customer }) => {
+          this.snackBar.open(
+            `Customer ${customer.name} saved successfully.`,
+            '',
+            {
+              duration: 2000
+            }
+          );
+        }),
+        map(_ => this.router.navigateByUrl('/customers'))
+      ),
+    { dispatch: false }
   );
 
   constructor(
