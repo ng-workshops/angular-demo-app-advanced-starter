@@ -1,6 +1,6 @@
 # 5 testing - components
 
-## customers/customer-list/customer-list.component.ts
+## src/app/customers/customer-list/customer-list.component.ts
 
 ```ts
 import {
@@ -71,7 +71,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 }
 ```
 
-## customers/customer-list/customer-list.component.spec.ts
+## src/app/customers/customer-list/customer-list.component.spec.ts
 
 ```ts
 import {

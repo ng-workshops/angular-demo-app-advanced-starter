@@ -1,6 +1,6 @@
 # 6 ngrx - Delete customer
 
-## customers/store/actions/customer.actions.ts
+## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
 import { Action } from '@ngrx/store';
@@ -53,7 +53,7 @@ export type CustomerActions =
   | DeleteCustomerFail;
 ```
 
-## customers/store/reducers/customer.reducer.ts
+## src/app/customers/store/reducers/customer.reducer.ts
 
 ```ts
 case CustomerActionTypes.DeleteCustomerSuccess: {
@@ -67,7 +67,7 @@ case CustomerActionTypes.DeleteCustomerSuccess: {
     }
 ```
 
-## customers/store/effects/customer.effects.ts
+## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
  /*
@@ -86,7 +86,7 @@ case CustomerActionTypes.DeleteCustomerSuccess: {
   );
 ```
 
-## customers/customer-list/customer-list.component.ts
+## src/app/customers/customer-list/customer-list.component.ts
 
 ```ts
 deleteCustomer(id: number) {

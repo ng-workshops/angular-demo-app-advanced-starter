@@ -1,6 +1,6 @@
 # 7 ngrx - Search customer
 
-## customers/store/actions/customer.actions.ts
+## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
 import { Action } from '@ngrx/store';
@@ -45,7 +45,7 @@ export type CustomerActions =
   | SearchCustomer;
 ```
 
-## customers/store/reducers/customer.reducer.ts
+## src/app/customers/store/reducers/customer.reducer.ts
 
 ```ts
 case CustomerActionTypes.SearchCustomer: {
@@ -59,7 +59,7 @@ case CustomerActionTypes.SearchCustomer: {
     }
 ```
 
-## customers/store/effects/customer.effects.ts
+## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
  /*
@@ -81,7 +81,7 @@ case CustomerActionTypes.SearchCustomer: {
   );
 ```
 
-## customers/customer-list/customer-list.component.ts
+## src/app/customers/customer-list/customer-list.component.ts
 
 ```ts
 export class CustomerListComponent implements OnInit, OnDestroy {

@@ -1,6 +1,6 @@
 # 4 testing - effects
 
-## customers/store/effects/customer.effects.spec.ts
+## src/app/customers/store/effects/customer.effects.spec.ts
 
 ```ts
 import { TestBed } from '@angular/core/testing';

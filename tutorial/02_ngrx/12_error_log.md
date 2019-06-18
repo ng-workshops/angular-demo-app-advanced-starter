@@ -1,6 +1,6 @@
 # 12 ngrx - Error logging
 
-## customers/store/effects/customer.effects.ts
+## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
 /*

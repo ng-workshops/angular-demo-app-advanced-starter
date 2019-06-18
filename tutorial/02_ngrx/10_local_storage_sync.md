@@ -1,6 +1,6 @@
 # 10 ngrx - Sync with local storage
 
-## app/store/index.ts
+## src/app/store/index.ts
 
 ```ts
 import { localStorageSync } from 'ngrx-store-localstorage';

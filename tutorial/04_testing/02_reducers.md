@@ -1,6 +1,6 @@
 # 2 testing - reducers
 
-## customers/store/reducers/customer.reducer.spec.ts
+## src/app/customers/store/reducers/customer.reducer.spec.ts
 
 ```ts
 import * as fromCustomers from './customer.reducer';

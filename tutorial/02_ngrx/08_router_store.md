@@ -1,6 +1,6 @@
 # 8 ngrx - Router Store
 
-## app/store/index.ts
+## src/app/store/index.ts
 
 ```ts
 import {
@@ -35,7 +35,7 @@ export const getRouterState = createFeatureSelector<
 export const effects: any[] = [RouterEffects];
 ```
 
-## app.module.ts
+## src/app.module.ts
 
 ```ts
 imports: [
@@ -48,7 +48,7 @@ providers: [
 ]
 ```
 
-## customers/store/effects/customer.effects.ts
+## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
 /*
@@ -78,7 +78,7 @@ providers: [
   );
 ```
 
-## customers/customer-list/customer-list.component.ts
+## src/app/customers/customer-list/customer-list.component.ts
 
 ```ts
 addNewCustomer() {
@@ -88,7 +88,7 @@ addNewCustomer() {
 
 <!-- Possible optimization to use the router store -->
 
-## customers/store/selectors/customer.selectors.ts
+## src/app/customers/store/selectors/customer.selectors.ts
 
 ```ts
 export const getSelectedCustomerFromRouter = createSelector(
@@ -99,7 +99,7 @@ export const getSelectedCustomerFromRouter = createSelector(
 );
 ```
 
-## customers/customer-form/customer-form.component.ts
+## src/app/customers/customer-form/customer-form.component.ts
 
 ```ts
 @Component({

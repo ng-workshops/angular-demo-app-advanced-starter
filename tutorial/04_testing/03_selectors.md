@@ -2,7 +2,7 @@
 
 > touch customers/store/selectors/customer.selectors.spec.ts
 
-## customers/store/selectors/customer.selectors.spec.ts
+## src/app/customers/store/selectors/customer.selectors.spec.ts
 
 ```ts
 import * as fromReducers from '../reducers/customer.reducer';

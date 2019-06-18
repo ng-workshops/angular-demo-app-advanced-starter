@@ -2,7 +2,7 @@
 
 > ng generate pipe customers/customer-status --module customers
 
-## customers/customer-status.pipe.ts
+## src/app/customers/customer-status.pipe.ts
 
 ```ts
 import { Pipe, PipeTransform } from '@angular/core';
@@ -19,7 +19,7 @@ export class CustomerStatusPipe implements PipeTransform {
 }
 ```
 
-## customers/customer/customer.component.html
+## src/app/customers/customer/customer.component.html
 
 ```html
 <span><mat-icon>{{customer?.numberOfOrders | customerStatus}}</mat-icon></span>

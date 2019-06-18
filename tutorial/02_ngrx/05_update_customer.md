@@ -1,6 +1,6 @@
 # 5 ngrx - Update customer
 
-## customers/store/actions/customer.actions.ts
+## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
 import { Action } from '@ngrx/store';
@@ -47,7 +47,7 @@ export type CustomerActions =
   | UpdateCustomerFail;
 ```
 
-## customers/store/effects/customer.effects.ts
+## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
 /*
@@ -87,7 +87,7 @@ export type CustomerActions =
   );
 ```
 
-## customers/customer-form/customer-form.component.ts
+## src/app/customers/customer-form/customer-form.component.ts
 
 ```ts
  submit() {

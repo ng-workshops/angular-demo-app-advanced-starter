@@ -1,85 +1,68 @@
 # 2 ngrx - All customers
 
-## customers/store/actions/customer.actions.ts
+## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { Customer } from '../../customer.model';
 
-export enum CustomerActionTypes {
-  LoadCustomers = '[Customer] Load Customers',
-  LoadCustomersSuccess = '[Customer] Load customers success',
-  LoadCustomersFail = '[Customer] Load customers fail'
-}
+export const loadCustomers = createAction('[Customer] Load Customers');
 
-export class LoadCustomers implements Action {
-  readonly type = CustomerActionTypes.LoadCustomers;
-}
+export const loadCustomersSuccess = createAction(
+  '[API] Load Customers Success',
+  props<{ customers: Customer[] }>()
+);
 
-export class LoadCustomersSuccess implements Action {
-  readonly type = CustomerActionTypes.LoadCustomersSuccess;
-  constructor(public payload: Customer[]) {}
-}
-
-export class LoadCustomersFail implements Action {
-  readonly type = CustomerActionTypes.LoadCustomersFail;
-  constructor(public payload: any) {}
-}
-
-export type CustomerActions =
-  | LoadCustomers
-  | LoadCustomersSuccess
-  | LoadCustomersFail;
+export const loadCustomersFail = createAction(
+  '[Customer] Load Customers Fail',
+  props<{ err: any }>()
+);
 ```
 
-## customers/store/reducers/customer.reducer.ts
+## src/app/customers/store/reducers/customer.reducer.ts
 
 ```ts
-case CustomerActionTypes.LoadCustomersSuccess: {
-      const customers = action.payload;
+const customerReducer = createReducer(
+  initialState,
 
-      return {
-        ...state,
-        loading: false,
-        selectedCustomerId: null,
-        customers
-      };
-    }
-
-    case CustomerActionTypes.LoadCustomersFail: {
-      return {
-        ...state,
-        loading: false
-      };
-    }
+  on(
+    CustomerActions.loadCustomers,
+    CustomerActions.loadCustomersFail,
+    state => ({ ...state, loading: true })
+  ),
+  on(CustomerActions.loadCustomersSuccess, (state, { customers }) => ({
+    ...state,
+    loading: false,
+    selectedCustomerId: null,
+    customers
+  }))
+);
 ```
 
-## customers/store/effects/customer.effects.ts
+## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { CustomerService } from '../../customer.service';
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import * as fromActions from '../actions/customer.actions';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { CustomerService } from '../../customer.service';
+import * as CustomerActions from '../actions/customer.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerEffects {
-  /*
-   * load all customers list and dispatch LoadCustomersSuccess action
-   */
-  @Effect()
-  loadCustomers$ = this.actions$.pipe(
-    ofType(fromActions.CustomerActionTypes.LoadCustomers),
-    switchMap(_ => {
-      return this.customerService.getAll().pipe(
-        map(customers => new fromActions.LoadCustomersSuccess(customers)),
-        catchError(err => of(new fromActions.LoadCustomersFail(err)))
-      );
-    })
+  loadCustomers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CustomerActions.loadCustomers),
+      switchMap(() => {
+        return this.customerService.getAll().pipe(
+          map(customers => CustomerActions.loadCustomersSuccess({ customers })),
+          catchError(err => of(CustomerActions.loadCustomersFail(err)))
+        );
+      })
+    )
   );
 
   constructor(
@@ -89,24 +72,29 @@ export class CustomerEffects {
 }
 ```
 
-## customers/customer-list/customer-list.component.ts
+## src/app/customers/customer-list/customer-list.component.ts
 
 ```ts
 export class CustomerListComponent implements OnInit {
-  customers$: Observable<Customer[]>;
-  loading$: Observable<boolean>;
+  // set up selectors
+  customers$: Observable<Customer[]> = this.store.select(getCustomers);
+  loading$: Observable<boolean> = this.store.select(getLoading);
 
   ngOnInit() {
-    // set up selectors
-    this.loading$ = this.store.select(getLoading);
-    this.customers$ = this.store.select(getCustomers);
-
     this.store.dispatch(new LoadCustomers());
+
+    // this.customers$ = merge(this.search$, this.reload$).pipe(
+    //   withLatestFrom(this.search$),
+    //   map(value => value[1]),
+    //   switchMap(value => {
+    //     return this.customerService.getAll(value);
+    //   })
+    // );
   }
 }
 ```
 
-## customers/customer-list/customer-list.component.html
+## src/app/customers/customer-list/customer-list.component.html
 
 ```html
 <mat-progress-bar
@@ -114,4 +102,6 @@ export class CustomerListComponent implements OnInit {
   color="primary"
   mode="indeterminate"
 ></mat-progress-bar>
+
+...
 ```

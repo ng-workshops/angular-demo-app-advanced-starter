@@ -1,6 +1,6 @@
 # 13 ngrx - using entities instead of arrays
 
-## customers/store/reducers/customer.reducer.ts
+## src/app/customers/store/reducers/customer.reducer.ts
 
 ```ts
 export interface CustomerState {
@@ -23,7 +23,7 @@ case CustomerActionTypes.LoadCustomersSuccess: {
     }
 ```
 
-## customers/store/selectors/customer.selector.ts
+## src/app/customers/store/selectors/customer.selector.ts
 
 ```ts
 export const getCustomers = createSelector(

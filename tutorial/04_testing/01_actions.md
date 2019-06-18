@@ -2,7 +2,7 @@
 
 > touch customers/store/actions/customer.actions.spec.ts
 
-## customers/store/actions/customer.actions.spec.ts
+## src/app/customers/store/actions/customer.actions.spec.ts
 
 ```ts
 import * as fromCustomers from './customer.actions';

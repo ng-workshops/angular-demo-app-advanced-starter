@@ -1,6 +1,6 @@
 # 0 Testing - Fix existing tests
 
-## app.component.ts
+## src/app.component.ts
 
 ```ts
 providers: [
@@ -61,7 +61,7 @@ beforeEach(async(() => {
 }));
 ```
 
-## customers/customer-list/customer-list.component.spec.ts
+## src/app/customers/customer-list/customer-list.component.spec.ts
 
 ```ts
 beforeEach(async(() => {
@@ -89,7 +89,7 @@ beforeEach(async(() => {
 }));
 ```
 
-## customers/customer-form/customer-form.component.spec.ts
+## src/app/customers/customer-form/customer-form.component.spec.ts
 
 ```ts
 beforeEach(async(() => {

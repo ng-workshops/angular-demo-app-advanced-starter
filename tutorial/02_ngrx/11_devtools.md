@@ -1,6 +1,6 @@
 # 11 ngrx - Sync with local storage
 
-## app.module.ts
+## src/app.module.ts
 
 ```ts
 imports [

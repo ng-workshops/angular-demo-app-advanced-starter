@@ -16,7 +16,7 @@ loaded: true;
 loaded: false;
 ```
 
-## customers/store/selectors/customer.selectors.ts
+## src/app/customers/store/selectors/customer.selectors.ts
 
 ```ts
 export const getLoaded = createSelector(
@@ -25,7 +25,7 @@ export const getLoaded = createSelector(
 );
 ```
 
-## customers/guards/customer-exists.guard.ts
+## src/app/customers/guards/customer-exists.guard.ts
 
 ```ts
 import { Injectable } from '@angular/core';
@@ -74,7 +74,7 @@ export class CustomerExistsGuard implements CanActivate {
 }
 ```
 
-## customers/customers-routing.module.ts
+## src/app/customers/customers-routing.module.ts
 
 ```ts
  {

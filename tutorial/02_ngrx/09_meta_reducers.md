@@ -1,6 +1,6 @@
 # 9 ngrx - Meta reducers
 
-## app/store/index.ts
+## src/app/store/index.ts
 
 ```ts
 import { storeFreeze } from 'ngrx-store-freeze';

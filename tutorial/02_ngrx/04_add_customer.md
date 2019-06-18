@@ -1,6 +1,6 @@
 # 4 ngrx - Add customer
 
-## customers/store/actions/customer.actions.ts
+## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
 import { Action } from '@ngrx/store';
@@ -41,7 +41,7 @@ export type CustomerActions =
   | AddCustomerFail;
 ```
 
-## customers/store/reducers/customer.reducer.ts
+## src/app/customers/store/reducers/customer.reducer.ts
 
 ```ts
 case CustomerActionTypes.AddCustomerSuccess: {
@@ -55,7 +55,7 @@ case CustomerActionTypes.AddCustomerSuccess: {
     }
 ```
 
-## customers/store/effects/customer.effects.ts
+## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
 /*
@@ -96,7 +96,7 @@ case CustomerActionTypes.AddCustomerSuccess: {
   ) {}
 ```
 
-## customers/customer-form/customer-form.component.ts
+## src/app/customers/customer-form/customer-form.component.ts
 
 ```ts
  submit() {
