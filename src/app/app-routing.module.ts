@@ -6,7 +6,8 @@ export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'settings',
-    loadChildren: 'app/settings/settings.module#SettingsModule'
+    loadChildren: () =>
+      import('app/settings/settings.module').then(m => m.SettingsModule)
   },
   { path: '**', component: HomeComponent }
 ];

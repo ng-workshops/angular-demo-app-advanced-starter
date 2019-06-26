@@ -5,15 +5,15 @@
 ## src/app/customers/store/selectors/customer.selectors.spec.ts
 
 ```ts
-import * as fromReducers from '../reducers/customer.reducer';
+import { Customer } from '../../customer.model';
+import { initialState } from '../reducers/customer.reducer';
 import * as fromSelectors from './customer.selectors';
 
 describe('Customer Selectors', () => {
-  const customerMockData = require('../../../../../server/mocks/customers/customers.json');
+  const customerMockData: Customer[] = require('../../../../../server/mocks/customers/customers.json');
 
   describe('getLoading', () => {
     it('should return the loading state from the store', () => {
-      const { initialState } = fromReducers;
       const actual = fromSelectors.getLoading({ customer: initialState });
 
       expect(actual).toBeFalsy();
@@ -22,11 +22,16 @@ describe('Customer Selectors', () => {
 
   describe('getCustomers', () => {
     it('should return the customers from the store', () => {
-      const { initialState } = fromReducers;
+      const entities = {};
+      customerMockData.forEach(c => {
+        entities[c.id] = c;
+      });
+
       const state = {
         customer: {
           ...initialState,
-          customers: customerMockData
+          ids: customerMockData.map(c => c.id),
+          entities
         }
       };
       const actual = fromSelectors.getCustomers(state);
@@ -37,12 +42,17 @@ describe('Customer Selectors', () => {
 
   describe('getSelectedCustomer', () => {
     it('should return the customers from the store', () => {
-      const { initialState } = fromReducers;
+      const entities = {};
+      customerMockData.forEach(c => {
+        entities[c.id] = c;
+      });
+
       const state = {
         customer: {
           ...initialState,
-          customers: customerMockData,
-          selectedCustomerId: customerMockData[1].id
+          ids: customerMockData.map(c => c.id),
+          selectedCustomerId: customerMockData[1].id,
+          entities
         }
       };
 

@@ -1,6 +1,6 @@
 # 11 ngrx - Sync with local storage
 
-## src/app.module.ts
+## src/app/app.module.ts
 
 ```ts
 imports [
@@ -14,11 +14,11 @@ imports [
  *
  * See: https://github.com/zalmoxisus/redux-devtools-extension
  */
-!environment.production
-  ? StoreDevtoolsModule.instrument({
-    maxAge: 25,
-      logOnly: environment.production
-    })
-  : [];
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production
+        })
+      : [],
 ]
 ```

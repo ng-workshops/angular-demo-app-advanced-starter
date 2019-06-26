@@ -1,7 +1,7 @@
 # 2 forms - custom form control
 
-$ ng generate directive shared/input-float/input-float --module shared
-$ ng generate component shared/input-float --module shared
+$ ng generate directive shared/input-float/input-float --module shared --export
+$ ng generate component shared/input-float --module shared --export
 
 ## shared/input-float/input-float.directive.ts
 
@@ -11,7 +11,7 @@ import { AbstractControl, NG_VALIDATORS } from '@angular/forms';
 import { floatValidator } from './input-float.validator';
 
 @Directive({
-  selector: '[inputFloat]',
+  selector: '[appInputFloat]',
   providers: [
     { provide: NG_VALIDATORS, useExisting: InputFloatDirective, multi: true }
   ]
@@ -146,7 +146,7 @@ export class InputFloatComponent implements OnInit, ControlValueAccessor {
     #field="ngModel"
     type="text"
     matInput
-    inputFloat
+    appInputFloat
     [(ngModel)]="input"
     (ngModelChange)="parseToFloat($event)"
     placeholder="{{placeholder}}"
@@ -159,22 +159,16 @@ export class InputFloatComponent implements OnInit, ControlValueAccessor {
 </mat-form-field>
 ```
 
-## shared/shared.module.ts
-
-```ts
-exports: [InputFloatDirective, InputFloatComponent];
-```
-
 ## settings/settings.component.html
 
 ```html
-<mat-form-field>
-  <input-float
+<div class="form-row">
+  <app-input-float
     formControlName="salary"
     placeholder="Salary"
     name="salary"
-  ></input-float>
-</mat-form-field>
+  ></app-input-float>
+</div>
 ```
 
 ## settings/settings.model.ts

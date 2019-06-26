@@ -4,16 +4,18 @@
 
 ```ts
 import { TestBed } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { ReplaySubject, of } from 'rxjs';
-import { CustomerEffects } from './customer.effects';
+import { of, ReplaySubject } from 'rxjs';
+import { ModalService } from '../../../shared/modal/modal.service';
 import { CustomerService } from '../../customer.service';
-import { MatSnackBarModule } from '@angular/material';
 import {
-  LoadCustomers,
-  LoadCustomersSuccess,
-  SearchCustomer
+  loadCustomers,
+  loadCustomersSuccess,
+  searchCustomer
 } from '../actions/customer.actions';
+import { CustomerEffects } from './customer.effects';
+
 const customerMockData = require('../../../../../server/mocks/customers/customers.json');
 
 const CustomerServiceStub = {
@@ -26,16 +28,15 @@ describe('CustomerEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [MatSnackBarModule],
       providers: [
         CustomerEffects,
-        provideMockActions(() => actions$),
         {
           provide: CustomerService,
           useValue: CustomerServiceStub
         },
-        ModalService,
-        HostElementService
+        { provide: MatSnackBar, useValue: {} },
+        { provide: ModalService, useValue: {} },
+        provideMockActions(() => actions$)
       ]
     });
 
@@ -52,24 +53,29 @@ describe('CustomerEffects', () => {
     describe('WHEN there is no search value', () => {
       it('THEN the LoadCustomersSuccess action should be returned with customers', done => {
         actions$ = new ReplaySubject(1);
-        actions$.next(new LoadCustomers());
+        actions$.next(loadCustomers());
+
         effects.loadCustomers$.subscribe(result => {
-          expect(result).toEqual(new LoadCustomersSuccess(customerMockData));
+          expect(result).toEqual(
+            loadCustomersSuccess({ customers: customerMockData })
+          );
           expect(CustomerServiceStub.getAll).toHaveBeenCalledWith(undefined);
           done();
         });
       });
     });
+  });
 
-    describe('WHEN there is a search value', () => {
-      it('THEN the LoadCustomersSuccess action should be returned with customers', done => {
-        actions$ = new ReplaySubject(1);
-        actions$.next(new SearchCustomer('simpson'));
-        effects.loadCustomers$.subscribe(result => {
-          expect(result).toEqual(new LoadCustomersSuccess(customerMockData));
-          expect(CustomerServiceStub.getAll).toHaveBeenCalledWith('simpson');
-          done();
-        });
+  describe('WHEN there is a search value', () => {
+    it('THEN the LoadCustomersSuccess action should be returned with customers', done => {
+      actions$ = new ReplaySubject(1);
+      actions$.next(searchCustomer({ criteria: 'simpson' }));
+      effects.loadCustomers$.subscribe(result => {
+        expect(result).toEqual(
+          loadCustomersSuccess({ customers: customerMockData })
+        );
+        expect(CustomerServiceStub.getAll).toHaveBeenCalledWith('simpson');
+        done();
       });
     });
   });

@@ -36,7 +36,7 @@ on(CustomerActions.addCustomerSuccess, (state, { customer }) => ({
       ofType(CustomerActions.addCustomer),
       concatMap(({ customer }) => {
         return this.customerService.create(customer).pipe(
-          map(customers => CustomerActions.addCustomerSuccess({ customer })),
+          map(result => CustomerActions.addCustomerSuccess({ customer: result })),
           catchError(err => of(CustomerActions.addCustomerFail(err)))
         );
       })
@@ -56,7 +56,7 @@ on(CustomerActions.addCustomerSuccess, (state, { customer }) => ({
             }
           );
         }),
-        map(_ => this.router.navigateByUrl('/customers'))
+        map(() => this.router.navigateByUrl('/customers'))
       ),
     { dispatch: false }
   );
@@ -74,6 +74,6 @@ on(CustomerActions.addCustomerSuccess, (state, { customer }) => ({
 ```ts
  submit() {
     const data = this.form.getRawValue();
-    this.store.dispatch(new AddCustomer(data));
+    this.store.dispatch(addCustomer({customer:data}));
   }
 ```

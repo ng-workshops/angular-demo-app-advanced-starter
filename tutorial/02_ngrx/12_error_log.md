@@ -3,27 +3,26 @@
 ## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
-/*
-   * error handler
-   */
-  @Effect({ dispatch: false })
-  errors$ = this.actions$.pipe(
-    ofType(
-      fromActions.CustomerActionTypes.LoadCustomersFail,
-      fromActions.CustomerActionTypes.AddCustomerFail,
-      fromActions.CustomerActionTypes.DeleteCustomerFail,
-      fromActions.CustomerActionTypes.UpdateCustomerFail
-    ),
-    map((action: any) => action.payload),
-    switchMap(error => {
-      console.log('error', error);
+errors$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(
+          CustomerActions.loadCustomersFail,
+          CustomerActions.addCustomerFail,
+          CustomerActions.updateCustomerFail,
+          CustomerActions.deleteCustomerFail
+        ),
+        switchMap(({ err }) => {
+          console.log('error', err);
 
-      return this.modalService.openGlobal({
-        title: 'App error',
-        message: error && error.message || 'The error message',
-        type: 'warn'
-      });
-    })
+          return this.modalService.openGlobal({
+            title: 'App error',
+            message: (err && err.message) || 'The error message',
+            type: 'warn'
+          });
+        })
+      ),
+    { dispatch: false }
   );
 
   constructor(

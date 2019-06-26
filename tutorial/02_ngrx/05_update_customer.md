@@ -3,88 +3,70 @@
 ## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
-import { Action } from '@ngrx/store';
-import { Customer } from '../../customer.model';
+export const updateCustomer = createAction(
+  '[UI] Update customer',
+  props<{ customer: Customer }>()
+);
 
-export enum CustomerActionTypes {
-  LoadCustomers = '[Customer] Load Customers',
-  LoadCustomersSuccess = '[Customer] Load customers success',
-  LoadCustomersFail = '[Customer] Load customers fail',
-  SelectCustomer = '[Customer] Select customer',
-  AddCustomer = '[Customer] Add customer',
-  AddCustomerSuccess = '[Customer] Add customer success',
-  AddCustomerFail = '[Customer] Add customer fail',
-  UpdateCustomer = '[Customer] Update customer',
-  UpdateCustomerSuccess = '[Customer] Update customer success',
-  UpdateCustomerFail = '[Customer] Update customer fail'
-}
+export const updateCustomerSuccess = createAction(
+  '[API] Update customer success',
+  props<{ customer: Customer }>()
+);
 
-export class UpdateCustomer implements Action {
-  readonly type = CustomerActionTypes.UpdateCustomer;
-  constructor(public payload: Customer) {}
-}
+export const updateCustomerFail = createAction(
+  '[API] Update customer fail',
+  props<{ err: any }>()
+);
+```
 
-export class UpdateCustomerSuccess implements Action {
-  readonly type = CustomerActionTypes.UpdateCustomerSuccess;
-  constructor(public payload: Customer) {}
-}
+## src/app/customers/store/reducers/customer.reducer.ts
 
-export class UpdateCustomerFail implements Action {
-  readonly type = CustomerActionTypes.UpdateCustomerFail;
-  constructor(public payload: any) {}
-}
-
-export type CustomerActions =
-  | LoadCustomers
-  | LoadCustomersSuccess
-  | LoadCustomersFail
-  | SelectCustomer
-  | AddCustomer
-  | AddCustomerSuccess
-  | AddCustomerFail
-  | UpdateCustomer
-  | UpdateCustomerSuccess
-  | UpdateCustomerFail;
+```ts
+on(CustomerActions.updateCustomerSuccess, (state, { customer }) => ({
+    ...state,
+    customers: state.customers.map(c =>
+      c.id === customer.id ? { ...customer } : c
+    )
+  })),
 ```
 
 ## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
-/*
-   * update a customer
-   */
-  @Effect()
-  updateCustomers$ = this.actions$.pipe(
-    ofType(fromActions.CustomerActionTypes.UpdateCustomer),
-    map((action: fromActions.UpdateCustomer) => action.payload),
-    concatMap(customer =>
-      this.customerService.update(customer).pipe(
-        map(newCustomer => new fromActions.UpdateCustomerSuccess(newCustomer)),
-        catchError(err => of(new fromActions.UpdateCustomerFail(err)))
-      )
-    )
-  );
+updateCustomers$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(CustomerActions.updateCustomer),
+    concatMap(({ customer }) => {
+      return this.customerService.update(customer).pipe(
+        map(result =>
+          CustomerActions.updateCustomerSuccess({ customer: result })
+        ),
+        catchError(err => of(CustomerActions.updateCustomerFail(err)))
+      );
+    })
+  )
+);
 
-  /*
-   * save customer success
-   */
-  @Effect({ dispatch: false })
-  saveCustomersSuccess$ = this.actions$.pipe(
-    ofType(
-      fromActions.CustomerActionTypes.AddCustomerSuccess,
-      fromActions.CustomerActionTypes.UpdateCustomerSuccess
+saveCustomersSuccess$ = createEffect(
+  () =>
+    this.actions$.pipe(
+      ofType(
+        CustomerActions.addCustomerSuccess,
+        CustomerActions.updateCustomer
+      ),
+      tap(({ customer }) => {
+        this.snackBar.open(
+          `Customer ${customer.name} saved successfully.`,
+          '',
+          {
+            duration: 2000
+          }
+        );
+      }),
+      map(() => this.router.navigateByUrl('/customers'))
     ),
-    map(
-      (action: fromActions.AddCustomerSuccess | fromActions.UpdateCustomer) =>
-        action.payload
-    ),
-    tap(customer => {
-      this.snackBar.open(`Customer ${customer.name} saved successfully.`, '', {
-        duration: 2000
-      });
-    }),
-    map(_ => this.router.navigateByUrl('/customers'))
-  );
+  { dispatch: false }
+);
 ```
 
 ## src/app/customers/customer-form/customer-form.component.ts

@@ -9,7 +9,8 @@ export const metaReducers: MetaReducer<AppState>[] = !environment.production
   ? [performanceLogger, storeFreeze, localStorageSyncReducer]
   : [localStorageSyncReducer];
 
-function localStorageSyncReducer(
+// export because of AOT
+export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
   return localStorageSync({ keys: ['customer'] })(reducer);

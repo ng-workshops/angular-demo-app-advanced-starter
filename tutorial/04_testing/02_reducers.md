@@ -3,71 +3,68 @@
 ## src/app/customers/store/reducers/customer.reducer.spec.ts
 
 ```ts
-import * as fromCustomers from './customer.reducer';
+import { Customer } from '../../customer.model';
 import * as fromActions from '../actions/customer.actions';
+import { initialState, reducer } from './customer.reducer';
 
-const customerMockData = require('../../../../../server/mocks/customers/customers.json');
+const customerMockData: Customer[] = require('../../../../../server/mocks/customers/customers.json');
 
-describe('CustomersReducer', () => {
-  describe('undefined action', () => {
-    it('should return the default state', () => {
-      const { initialState } = fromCustomers;
+describe('Customer Reducer', () => {
+  describe('an unknown action', () => {
+    it('should return the previous state', () => {
       const action = {} as any;
-      const state = fromCustomers.reducer(undefined, action);
+      const result = reducer(initialState, action);
 
-      expect(state).toBe(initialState);
+      expect(result).toBe(initialState);
     });
   });
 
   describe('LOAD_CUSTOMERS action', () => {
     it('should set loading to true', () => {
-      const { initialState } = fromCustomers;
-      const action = new fromActions.LoadCustomers();
-      const state = fromCustomers.reducer(initialState, action);
+      const action = fromActions.loadCustomers();
+      const state = reducer(initialState, action);
 
       expect(state.loading).toEqual(true);
-      expect(state.customers).toEqual([]);
-    });
-  });
-
-  describe('LOAD_CUSTOMERS_SUCCESS action', () => {
-    it('should set loading to false and populate customers', () => {
-      const { initialState } = fromCustomers;
-      const action = new fromActions.LoadCustomersSuccess(customerMockData);
-      const state = fromCustomers.reducer(initialState, action);
-
-      expect(state.loading).toEqual(false);
-      expect(state.customers).toEqual(customerMockData);
+      expect(state.entities).toEqual({});
+      expect(state.ids).toEqual([]);
     });
   });
 
   describe('SELECT_CUSTOMER action', () => {
     it('should set the selectedCustomerId in the store', () => {
-      const { initialState } = fromCustomers;
       const id = customerMockData[0].id;
-      const action = new fromActions.SelectCustomer(id);
-      const state = fromCustomers.reducer(initialState, action);
+      const action = fromActions.selectCustomer({ id });
+      const state = reducer(initialState, action);
 
       expect(state.loading).toEqual(false);
-      expect(state.customers).toEqual([]);
+      expect(state.ids).toEqual([]);
+      expect(state.entities).toEqual({});
       expect(state.selectedCustomerId).toEqual(id);
     });
   });
 
   describe('DELETE_CUSTOMER_SUCCESS action', () => {
     it('should remove the customer from the store', () => {
-      const { initialState } = fromCustomers;
-      const previousState = { ...initialState, customers: customerMockData };
+      const entities = {};
+      customerMockData.forEach(c => {
+        entities[c.id] = c;
+      });
+
+      const previousState = {
+        ...initialState,
+        ids: customerMockData.map(c => c.id),
+        entities
+      };
       const id = customerMockData[1].id;
-      const action = new fromActions.DeleteCustomerSuccess(id);
-      const state = fromCustomers.reducer(previousState, action);
+      const action = fromActions.deleteCustomerSuccess({ id });
+      const state = reducer(previousState, action);
 
       expect(state.loading).toEqual(false);
-      expect(state.customers.length).toEqual(2);
-      expect(state.customers).toEqual([
-        customerMockData[0],
-        customerMockData[2]
-      ]);
+      expect(state.ids.length).toEqual(2);
+      expect(state.entities).toEqual({
+        '1': customerMockData[0],
+        '3': customerMockData[2]
+      });
     });
   });
 });

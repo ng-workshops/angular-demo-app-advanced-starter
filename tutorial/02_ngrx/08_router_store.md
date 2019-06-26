@@ -3,33 +3,28 @@
 ## src/app/store/index.ts
 
 ```ts
+import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import {
-  ActionReducer,
   ActionReducerMap,
   createFeatureSelector,
-  createSelector,
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import * as fromRouter from '@ngrx/router-store';
-import { RouterStateUrl } from '../core/router/router.serializer';
 import { RouterEffects } from '../core/router/router.effects';
+import { RouterStateUrl } from '../core/router/router.serializer';
 
-// tslint:disable-next-line:no-empty-interface
 export interface AppState {
-  router: fromRouter.RouterReducerState<RouterStateUrl>; // default from ngrx
+  router: RouterReducerState<RouterStateUrl>; // default from ngrx
 }
 
-export const reducers: ActionReducerMap<AppState> = {
-  router: fromRouter.routerReducer // default from ngrx
-};
+export const reducers: ActionReducerMap<AppState> = { router: routerReducer }; // default from ngrx;
 
 export const metaReducers: MetaReducer<AppState>[] = !environment.production
   ? []
   : [];
 
 export const getRouterState = createFeatureSelector<
-  fromRouter.RouterReducerState<RouterStateUrl>
+  RouterReducerState<RouterStateUrl>
 >('router');
 
 export const effects: any[] = [RouterEffects];
@@ -39,51 +34,39 @@ export const effects: any[] = [RouterEffects];
 
 ```ts
 imports: [
-  StoreRouterConnectingModule,
+  // Connects RouterModule with StoreModule
+  StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+  })
   EffectsModule.forRoot(effects),
-],
-providers: [
-  httpInterceptorProviders,
-  { provide: RouterStateSerializer, useClass: CustomSerializer }
 ]
 ```
 
 ## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
-/*
-   * save customer success
-   */
-  @Effect()
-  saveCustomersSuccess$ = this.actions$.pipe(
+saveCustomersSuccess$ = createEffect(() =>
+  this.actions$.pipe(
     ofType(
-      fromActions.CustomerActionTypes.AddCustomerSuccess,
-      fromActions.CustomerActionTypes.UpdateCustomerSuccess
+      CustomerActions.addCustomerSuccess,
+      CustomerActions.updateCustomerSuccess
     ),
-    map(
-      (action: fromActions.AddCustomerSuccess | fromActions.UpdateCustomer) =>
-        action.payload
-    ),
-    tap(customer => {
+    tap(({ customer }) => {
       this.snackBar.open(`Customer ${customer.name} saved successfully.`, '', {
         duration: 2000
       });
     }),
-    map(
-      _ =>
-        new Go({
-          path: ['/customers']
-        })
-    )
-  );
+    map(() => navigate({ path: ['customers'] }))
+  )
+);
 ```
 
 ## src/app/customers/customer-list/customer-list.component.ts
 
 ```ts
 addNewCustomer() {
-  this.store.dispatch(new Go({ path: ['customers', 'new'] }));
-  }
+  this.store.dispatch(navigate({ path: ['customers', 'new'] }));
+}
 ```
 
 <!-- Possible optimization to use the router store -->
@@ -95,7 +78,7 @@ export const getSelectedCustomerFromRouter = createSelector(
   getCustomers,
   getRouterState,
   (customers, router) =>
-    customers.find(c => c.id === router.state.params.id) || {}
+    customers.find(c => c.id.toString() === router.state.params.id) || {}
 );
 ```
 
@@ -105,8 +88,7 @@ export const getSelectedCustomerFromRouter = createSelector(
 @Component({
   selector: 'app-customer-form',
   templateUrl: './customer-form.component.html',
-  styleUrls: ['./customer-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
@@ -123,16 +105,19 @@ export class CustomerFormComponent implements OnInit, OnDestroy {
         this.form.patchValue(customer);
       });
 
-    // const id = this.route.snapshot.params.id;
-
-    // if (id !== 'new') {
-    //   this.store.dispatch(new SelectCustomer(parseInt(id, 10)));
-    // }
+    // this.route.paramMap
+    //   .pipe(
+    //     map(params => params.get('id')),
+    //     filter(id => id !== 'new')
+    //   )
+    //   .subscribe(id => {
+    //     this.store.dispatch(selectCustomer({ id: parseInt(id, 10) }));
+    //   });
   }
 
   cancel() {
     // this.router.navigate(['customers']);
-    this.store.dispatch(new Go({ path: ['customers'] }));
+    this.store.dispatch(navigate({ path: ['customers'] }));
   }
 }
 ```

@@ -7,12 +7,13 @@
 loaded: boolean;
 
 // initialState
-loaded: true;
+loaded: false;
 
 // LoadCustomersSuccess
 loaded: true;
 
 // LoadCustomersFail
+// SearchCustomer
 loaded: false;
 ```
 
@@ -24,6 +25,8 @@ export const getLoaded = createSelector(
   store => store.loaded
 );
 ```
+
+> ng generate guard customers/guards/customer-exists
 
 ## src/app/customers/guards/customer-exists.guard.ts
 

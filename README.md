@@ -45,6 +45,7 @@ Offical code styleguide from the Angular team.
 
 https://angular.io/guide/styleguide
 https://angular-checklist.io/projects
+[Angular Update Guide](https://update.angular.io)
 
 ### Create you own Angular lib
 
@@ -134,3 +135,11 @@ https://nrwl.io/nx
 - http://www.softwarearchitekt.at/default.aspx
 - https://juristr.com/blog/
 - https://www.bennadel.com/index.cfm
+
+### Youtube Channels of Angular conferences
+
+- [ng-conf](https://www.youtube.com/user/ngconfvideos/videos)
+- [ng-europe](https://www.youtube.com/channel/UCEGUP3TJJfMsEM_1y8iviSQ/videos)
+- [AngularConnect](https://www.youtube.com/channel/UCzrskTiT_ObAk3xBkVxMz5g/videos)
+- [ng-be](https://www.youtube.com/channel/UCnMfZM2S3QgbFvOyet5PMmQ/videos)
+- [ngVikings](https://www.youtube.com/channel/UCImlZXX470Pl8N_CUy3E2Zw/videos)

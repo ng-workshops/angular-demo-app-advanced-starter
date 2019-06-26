@@ -3,82 +3,36 @@
 ## src/app/customers/store/actions/customer.actions.ts
 
 ```ts
-import { Action } from '@ngrx/store';
-import { Customer } from '../../customer.model';
-
-export enum CustomerActionTypes {
-  LoadCustomers = '[Customer] Load Customers',
-  LoadCustomersSuccess = '[Customer] Load customers success',
-  LoadCustomersFail = '[Customer] Load customers fail',
-  SelectCustomer = '[Customer] Select customer',
-  AddCustomer = '[Customer] Add customer',
-  AddCustomerSuccess = '[Customer] Add customer success',
-  AddCustomerFail = '[Customer] Add customer fail',
-  UpdateCustomer = '[Customer] Update customer',
-  UpdateCustomerSuccess = '[Customer] Update customer success',
-  UpdateCustomerFail = '[Customer] Update customer fail',
-  DeleteCustomer = '[Customer] Delete customer',
-  DeleteCustomerSuccess = '[Customer] Delete customer success',
-  DeleteCustomerFail = '[Customer] Delete customer fail',
-  SearchCustomer = '[Customer] Search customer'
-}
-
-export class SearchCustomer implements Action {
-  readonly type = CustomerActionTypes.SearchCustomer;
-  constructor(public payload: string) {}
-}
-
-export type CustomerActions =
-  | LoadCustomers
-  | LoadCustomersSuccess
-  | LoadCustomersFail
-  | SelectCustomer
-  | AddCustomer
-  | AddCustomerSuccess
-  | AddCustomerFail
-  | UpdateCustomer
-  | UpdateCustomerSuccess
-  | UpdateCustomerFail
-  | DeleteCustomer
-  | DeleteCustomerSuccess
-  | DeleteCustomerFail
-  | SearchCustomer;
+export const searchCustomer = createAction(
+  '[UI] Search for customer',
+  props<{ criteria: string }>()
+);
 ```
 
 ## src/app/customers/store/reducers/customer.reducer.ts
 
 ```ts
-case CustomerActionTypes.SearchCustomer: {
-      const search = action.payload;
-
-      return {
-        ...state,
-        loading: true,
-        search
-      };
-    }
+on(CustomerActions.searchCustomer, (state, { criteria }) => ({
+  ...state,
+  loading: true,
+  search: criteria
+}));
 ```
 
 ## src/app/customers/store/effects/customer.effects.ts
 
 ```ts
- /*
-   * load or search all customers list and dispatch LoadCustomersSuccess action
-   */
-  @Effect()
-  loadCustomers$ = this.actions$.pipe(
-    ofType(
-      fromActions.CustomerActionTypes.LoadCustomers,
-      fromActions.CustomerActionTypes.SearchCustomer
-    ),
-    map((action: any) => action.payload),
-    switchMap(search => {
-      return this.customerService.getAll(search).pipe(
-        map(customers => new fromActions.LoadCustomersSuccess(customers)),
-        catchError(err => of(new fromActions.LoadCustomersFail(err)))
+loadCustomers$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(CustomerActions.loadCustomers, CustomerActions.searchCustomer),
+    switchMap((action: any) => {
+      return this.customerService.getAll(action.criteria).pipe(
+        map(customers => CustomerActions.loadCustomersSuccess({ customers })),
+        catchError(err => of(CustomerActions.loadCustomersFail(err)))
       );
     })
-  );
+  )
+);
 ```
 
 ## src/app/customers/customer-list/customer-list.component.ts
@@ -94,13 +48,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
         distinctUntilChanged(),
         takeUntil(this.destroy$)
       )
-      .subscribe(search => this.store.dispatch(new SearchCustomer(search)));
-
-    // set up selectors
-    this.loading$ = this.store.select(getLoading);
-    this.customers$ = this.store.select(getCustomers);
-
-    this.store.dispatch(new LoadCustomers());
+      .subscribe(searchTerm =>
+        this.store.dispatch(searchCustomer({ criteria: searchTerm }))
+      );
   }
 
   ngOnDestroy() {

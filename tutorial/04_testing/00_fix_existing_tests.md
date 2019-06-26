@@ -1,5 +1,78 @@
 # 0 Testing - Fix existing tests
 
+## src/customers/guards/customer-exists.guard.spec.ts
+
+```ts
+beforeEach(() => {
+  TestBed.configureTestingModule({
+    providers: [CustomerExistsGuard, { provide: Store, useValue: {} }]
+  });
+});
+```
+
+## src/app/home/info-box/info-box.component.spec.ts
+
+```ts
+const listenerSubject = new Subject();
+const messageServiceMock = {
+  listener$: listenerSubject.asObservable()
+};
+
+beforeEach(async(() => {
+  TestBed.configureTestingModule({
+    declarations: [InfoBoxComponent],
+    providers: [
+      {
+        provide: MessageService,
+        useValue: messageServiceMock
+      }
+    ],
+    schemas: [NO_ERRORS_SCHEMA]
+  }).compileComponents();
+}));
+```
+
+## src/app/home/info-item/info-item.component.spec.ts
+
+```ts
+beforeEach(async(() => {
+  TestBed.configureTestingModule({
+    imports: [FormsModule],
+    declarations: [InfoItemComponent]
+  }).compileComponents();
+}));
+```
+
+## src/app/customers/customer/customer.component.spec.ts
+
+```ts
+beforeEach(async(() => {
+  TestBed.configureTestingModule({
+    declarations: [CustomerComponent, CustomerStatusPipe],
+    providers: [{ provide: Router, useValue: {} }],
+    schemas: [NO_ERRORS_SCHEMA]
+  }).compileComponents();
+}));
+```
+
+## src/app/customers/store/effects/customer.effects.spec.ts
+
+```ts
+beforeEach(() => {
+  TestBed.configureTestingModule({
+    providers: [
+      CustomerEffects,
+      { provide: HttpClient, useValue: {} },
+      { provide: MatSnackBar, useValue: {} },
+      { provide: ModalService, useValue: {} },
+      provideMockActions(() => actions$)
+    ]
+  });
+
+  effects = TestBed.get(CustomerEffects);
+});
+```
+
 ## src/app.component.ts
 
 ```ts
@@ -43,20 +116,9 @@ beforeEach(() => {
 ```ts
 beforeEach(async(() => {
   TestBed.configureTestingModule({
-    imports: [FormsModule],
+    imports: [FormsModule, MatCardModule],
     declarations: [HomeComponent, InfoBoxComponent, InfoItemComponent],
     providers: [MessageService, HostElementService, ModalService]
-  }).compileComponents();
-}));
-```
-
-## src/app/home/info-item/info-item.component.spec.ts
-
-```ts
-beforeEach(async(() => {
-  TestBed.configureTestingModule({
-    imports: [FormsModule],
-    declarations: [InfoItemComponent]
   }).compileComponents();
 }));
 ```

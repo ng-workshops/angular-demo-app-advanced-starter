@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Customer } from './customer.model';
 
@@ -33,6 +33,6 @@ export class CustomerService {
   }
 
   delete(id: number) {
-    return this.httpClient.delete<Customer>(`${this.endpoint}/${id}`);
+    return this.httpClient.delete<void>(`${this.endpoint}/${id}`);
   }
 }

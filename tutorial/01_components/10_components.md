@@ -27,10 +27,10 @@ export interface ModalData {
     <mat-card-content>{{ modal.message }}</mat-card-content>
     <mat-card-content class="footer">
       <button (click)="cancel.emit()" mat-raised-button color="basic">
-        Ähm No
+        no
       </button>
       <button (click)="close.emit()" mat-raised-button [color]="modal.type">
-        Oki doki
+        yes
       </button>
     </mat-card-content>
   </mat-card>
@@ -165,11 +165,11 @@ export class HomeComponent {
       this.hostElement
     );
 
-    modal.close.subscribe(_ => {
+    modal.close.subscribe(() => {
       console.log('MODAL closed');
     });
 
-    modal.cancel.subscribe(_ => {
+    modal.cancel.subscribe(() => {
       console.log('MODAL cancelled');
     });
   }

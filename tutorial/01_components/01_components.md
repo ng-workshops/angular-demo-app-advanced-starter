@@ -59,5 +59,7 @@ export class HomeComponent {
 ## src/app/home/home.module.ts
 
 ```ts
+import { MatCardModule } from '@angular/material/card';
+
 imports: [CommonModule, FormsModule, MatCardModule];
 ```
